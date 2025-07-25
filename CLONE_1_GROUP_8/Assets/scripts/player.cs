@@ -23,6 +23,13 @@ public class player : MonoBehaviour
     private CharacterController _characterController; // Reference to the CharacterController component
 
 
+    //dash
+    public bool canDodge = true;
+
+    //camera stuff
+    public GameObject playerCamHolder;
+    public GameObject Room1Cam;
+
     [Header("CROUCH SETTINGS")]
     [Space(5)]
     public float crouchHeight = 1f; //make short
@@ -87,7 +94,8 @@ public class player : MonoBehaviour
 
     public void Start()
     {
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Update()
@@ -146,7 +154,10 @@ public class player : MonoBehaviour
 
     public void Dodge()
     {
-
+        if(canDodge == true)
+        {
+            StartCoroutine(TheDodge());
+        }
     }
 
     public void Interact()
@@ -177,5 +188,34 @@ public class player : MonoBehaviour
     public void Pause()
     {
 
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Room1")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(true);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Room1")
+        {
+            playerCamHolder.SetActive(true);
+            Room1Cam.SetActive(false);
+        }
+    }
+
+    private IEnumerator TheDodge()
+    {
+        yield return new WaitForSeconds(0f);
+        canDodge = false;
+        moveSpeed = moveSpeed + 8f;
+        yield return new WaitForSeconds(0.3f);
+        moveSpeed = moveSpeed - 8f;
+        yield return new WaitForSeconds(2f);
+        canDodge = true;
     }
 }

@@ -179,7 +179,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""id"": ""2ed054b9-aad3-4b97-85a2-8aada4f17cd6"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
@@ -377,7 +377,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""id"": ""af98ea74-a10d-42c7-8a37-20d792731858"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=8,y=8)"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -390,12 +390,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         {
             ""name"": ""Keyboard"",
             ""bindingGroup"": ""Keyboard"",
-            ""devices"": []
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         },
         {
             ""name"": ""Gamepad"",
             ""bindingGroup"": ""Gamepad"",
-            ""devices"": []
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
