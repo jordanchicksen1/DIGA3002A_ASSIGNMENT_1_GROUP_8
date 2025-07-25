@@ -30,6 +30,10 @@ public class player : MonoBehaviour
     public GameObject playerCamHolder;
     public GameObject Room1Cam;
 
+    //pause stuff
+    public bool isPaused = false;
+    public GameObject pauseScreen;
+
     [Header("CROUCH SETTINGS")]
     [Space(5)]
     public float crouchHeight = 1f; //make short
@@ -107,27 +111,36 @@ public class player : MonoBehaviour
 
     public void Move()
     {
-        // Create a movement vector based on the input
-        Vector3 move = new Vector3(-_moveInput.x, 0, -_moveInput.y);
 
-        // Transform direction from local to world space
-        move = transform.TransformDirection(move);
+        if(isPaused == false)
+        {
+            // Create a movement vector based on the input
+            Vector3 move = new Vector3(-_moveInput.x, 0, -_moveInput.y);
 
-        var currentSpeed = isCrouching ? crouchSpeed : moveSpeed;
+            // Transform direction from local to world space
+            move = transform.TransformDirection(move);
 
-        // Move the character controller based on the movement vector and speed
-        _characterController.Move(move * currentSpeed * Time.deltaTime);
+            var currentSpeed = isCrouching ? crouchSpeed : moveSpeed;
+
+            // Move the character controller based on the movement vector and speed
+            _characterController.Move(move * currentSpeed * Time.deltaTime);
+        }
+        
     }
 
    
 
     public void Look()
     {
-        // Only use horizontal input (left/right)
-        float lookX = _lookInput.x * lookSpeed;
+        if(isPaused == false)
+        {
+            // Only use horizontal input (left/right)
+            float lookX = _lookInput.x * lookSpeed;
 
-        // Rotate the player left/right around the Y-axis
-        transform.Rotate(0f, lookX, 0f);
+            // Rotate the player left/right around the Y-axis
+            transform.Rotate(0f, lookX, 0f);
+        }
+        
     }
 
 
@@ -145,7 +158,7 @@ public class player : MonoBehaviour
 
     public void Jump()
     {
-        if(_characterController.isGrounded)
+        if(_characterController.isGrounded && isPaused == false)
         {
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
@@ -187,10 +200,28 @@ public class player : MonoBehaviour
 
     public void Pause()
     {
+        if (isPaused == false)
+        {
+            isPaused = true;
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;
+            Debug.Log("should pause");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
 
+        else if (isPaused == true)
+        {
+            isPaused = false;
+            pauseScreen.SetActive(false);
+            Time.timeScale = 1;
+            Debug.Log("should unpaused");
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerStay (Collider other)
     {
         if(other.tag == "Room1")
         {
