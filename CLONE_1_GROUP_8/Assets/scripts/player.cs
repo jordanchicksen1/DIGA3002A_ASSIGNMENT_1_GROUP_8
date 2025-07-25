@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class player : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class player : MonoBehaviour
 
     // Private variables to store input values and the character controller
     private Vector2 _moveInput; // Stores the movement input from the player
-    private Vector2 _lookInput; // Stores the look input from the player
+    private Vector2 _lookInput;
     private float _verticalLookRotation = 0f; // Keeps track of vertical camera rotation for clamping
     private Vector3 _velocity; // Velocity of the player
     private CharacterController _characterController; // Reference to the CharacterController component
@@ -99,7 +100,7 @@ public class player : MonoBehaviour
     public void Move()
     {
         // Create a movement vector based on the input
-        Vector3 move = new Vector3(_moveInput.x, 0, _moveInput.y);
+        Vector3 move = new Vector3(-_moveInput.x, 0, -_moveInput.y);
 
         // Transform direction from local to world space
         move = transform.TransformDirection(move);
@@ -110,21 +111,18 @@ public class player : MonoBehaviour
         _characterController.Move(move * currentSpeed * Time.deltaTime);
     }
 
+   
+
     public void Look()
     {
-        // Get horizontal and vertical look inputs and adjust based on sensitivity
-        var lookX = _lookInput.x * lookSpeed;
-        
+        // Only use horizontal input (left/right)
+        float lookX = _lookInput.x * lookSpeed;
 
-        // Horizontal rotation: Rotate the player object around the y-axis 
-        transform.Rotate(lookX,0, 0);
-
-        // Vertical rotation: Adjust the vertical look rotation and clamp it to prevent flipping
-        
-
-        // Apply the clamped vertical rotation to the player camera
-       // playerCamera.localEulerAngles = new Vector3(_verticalLookRotation, 0, 0);
+        // Rotate the player left/right around the Y-axis
+        transform.Rotate(0f, lookX, 0f);
     }
+
+
 
     public void ApplyGravity()
     {
@@ -139,7 +137,11 @@ public class player : MonoBehaviour
 
     public void Jump()
     {
-
+        if(_characterController.isGrounded)
+        {
+            _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+       
     }
 
     public void Dodge()
