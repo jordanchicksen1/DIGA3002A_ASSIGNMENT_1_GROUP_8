@@ -10,6 +10,10 @@ TagManager:
   - WaterProjectile
   - ManaPotion
   - HealthPotion
+  - FireSpell
+  - WaterSpell
+  - LightningSpell
+  - RockSpell
   layers:
   - Default
   - TransparentFX
