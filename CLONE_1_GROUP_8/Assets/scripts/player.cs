@@ -41,6 +41,16 @@ public class player : MonoBehaviour
     public float fireProjectileSpeed;
     public bool isShootingSpell;
 
+    //potion stuff
+    public potionManager potionManager;
+    public healthManager healthManager;
+   
+    public bool manaPotionEquipped = false;
+    public GameObject manaPotionDisplay;
+    
+    public bool healthPotionEquipped = true;
+    public GameObject healthPotionDisplay;
+
     [Header("CROUCH SETTINGS")]
     [Space(5)]
     public float crouchHeight = 1f; //make short
@@ -199,17 +209,39 @@ public class player : MonoBehaviour
 
     public void DrinkPotion()
     {
-            
+        if (healthPotionEquipped == true && potionManager.healthPotion > 0)
+        {
+            healthManager.PlayerHeal();
+            potionManager.subtractHealthPotion();
+            Debug.Log("player should heal and lose 1 potion");
+        }
+
+        if (manaPotionEquipped == true && potionManager.manaPotion > 0)
+        {
+            manaManager.DrankManaPotion();
+            potionManager.subtractManaPotion();
+            Debug.Log("player should restore mana and lose 1 potion");
+        }
     }
 
     public void ChangeSpell()
     {
+        
             
     }
 
     public void ChangePotion()
     {
-        
+        if(healthPotionEquipped == true) 
+        {
+            StartCoroutine(HealthPotionSwitch());
+        }
+
+        if (manaPotionEquipped == true)
+        {
+           StartCoroutine(ManaPotionSwitch());
+     
+        }
     }
 
     public void Pause()
@@ -235,6 +267,20 @@ public class player : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "ManaPotion")
+        {
+            potionManager.addManaPotion();
+            Destroy(other.gameObject);
+        }
+
+        if (other.tag == "HealthPotion")
+        {
+            potionManager.addHealthPotion();
+            Destroy(other.gameObject);
+        }
+    }
     public void OnTriggerStay (Collider other)
     {
         if(other.tag == "Room1")
@@ -264,5 +310,27 @@ public class player : MonoBehaviour
         canDodge = true;
     }
 
-    
+    private IEnumerator HealthPotionSwitch()
+    {
+        yield return new WaitForSeconds(0f);
+        healthPotionEquipped = false;
+        healthPotionDisplay.SetActive(false);
+
+        yield return new WaitForSeconds(0.01f);
+        manaPotionEquipped = true;
+        manaPotionDisplay.SetActive(true);
+        Debug.Log("should change to mana potion");
+    }
+
+    private IEnumerator ManaPotionSwitch()
+    {
+        yield return new WaitForSeconds(0f);
+        manaPotionEquipped = false;
+        manaPotionDisplay.SetActive(false);
+
+        yield return new WaitForSeconds(0.01f);
+        healthPotionEquipped = true;
+        healthPotionDisplay.SetActive(true);
+        Debug.Log("should change to health potion");
+    }
 }

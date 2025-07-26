@@ -246,7 +246,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "DrinkPotion",
                     "isComposite": false,
                     "isPartOfComposite": false

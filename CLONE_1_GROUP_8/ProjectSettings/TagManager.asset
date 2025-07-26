@@ -8,6 +8,8 @@ TagManager:
   - Room1
   - FireProjectile
   - WaterProjectile
+  - ManaPotion
+  - HealthPotion
   layers:
   - Default
   - TransparentFX
