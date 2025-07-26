@@ -228,14 +228,14 @@ public class player : MonoBehaviour
 
     public void DrinkPotion()
     {
-        if (healthPotionEquipped == true && potionManager.healthPotion > 0)
+        if (healthPotionEquipped == true && potionManager.healthPotion > 0 && healthManager.currentHealth < 100)
         {
             healthManager.PlayerHeal();
             potionManager.subtractHealthPotion();
             Debug.Log("player should heal and lose 1 potion");
         }
 
-        if (manaPotionEquipped == true && potionManager.manaPotion > 0)
+        if (manaPotionEquipped == true && potionManager.manaPotion > 0 && manaManager.currentMana < 100)
         {
             manaManager.DrankManaPotion();
             potionManager.subtractManaPotion();
@@ -251,12 +251,12 @@ public class player : MonoBehaviour
 
     public void ChangePotion()
     {
-        if(healthPotionEquipped == true && healthManager.currentHealth < 100) 
+        if(healthPotionEquipped == true) 
         {
             StartCoroutine(HealthPotionSwitch());
         }
 
-        if (manaPotionEquipped == true && manaManager.currentMana < 100)
+        if (manaPotionEquipped == true)
         {
            StartCoroutine(ManaPotionSwitch());
      
