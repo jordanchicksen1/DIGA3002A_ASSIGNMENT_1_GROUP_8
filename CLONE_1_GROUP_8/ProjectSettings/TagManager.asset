@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerCam
   - Room1
+  - FireProjectile
+  - WaterProjectile
   layers:
   - Default
   - TransparentFX

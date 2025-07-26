@@ -18,7 +18,6 @@ public class player : MonoBehaviour
     // Private variables to store input values and the character controller
     private Vector2 _moveInput; // Stores the movement input from the player
     private Vector2 _lookInput;
-    private float _verticalLookRotation = 0f; // Keeps track of vertical camera rotation for clamping
     private Vector3 _velocity; // Velocity of the player
     private CharacterController _characterController; // Reference to the CharacterController component
 
@@ -33,6 +32,14 @@ public class player : MonoBehaviour
     //pause stuff
     public bool isPaused = false;
     public GameObject pauseScreen;
+
+    //spell casting
+    public Transform spellSpawnPoint;
+    public manaManager manaManager;
+
+    public GameObject fireProjectile;
+    public float fireProjectileSpeed;
+    public bool isShootingSpell;
 
     [Header("CROUCH SETTINGS")]
     [Space(5)]
@@ -112,7 +119,7 @@ public class player : MonoBehaviour
     public void Move()
     {
 
-        if(isPaused == false)
+        if(isPaused == false && isShootingSpell == false)
         {
             // Create a movement vector based on the input
             Vector3 move = new Vector3(-_moveInput.x, 0, -_moveInput.y);
@@ -180,7 +187,14 @@ public class player : MonoBehaviour
 
     public void CastSpell()
     {
-
+        //fire spell
+        if(manaManager.currentMana > 4.99f)
+        {
+            var projectile = Instantiate(fireProjectile, spellSpawnPoint.position, spellSpawnPoint.rotation);
+            var rb = projectile.GetComponent<Rigidbody>();
+            rb.velocity = spellSpawnPoint.forward * fireProjectileSpeed;
+            manaManager.UseFireSpell();
+        }
     }
 
     public void DrinkPotion()
@@ -249,4 +263,6 @@ public class player : MonoBehaviour
         yield return new WaitForSeconds(2f);
         canDodge = true;
     }
+
+    
 }
