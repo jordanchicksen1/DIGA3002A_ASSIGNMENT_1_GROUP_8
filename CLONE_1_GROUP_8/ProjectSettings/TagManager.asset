@@ -14,6 +14,7 @@ TagManager:
   - WaterSpell
   - LightningSpell
   - RockSpell
+  - WindSpell
   layers:
   - Default
   - TransparentFX

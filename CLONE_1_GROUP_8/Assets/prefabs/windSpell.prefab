@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4720689854951186510}
   - component: {fileID: 78963318055594635}
   m_Layer: 0
-  m_Name: lightningSpell
-  m_TagString: LightningSpell
+  m_Name: windSpell
+  m_TagString: WindSpell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 48f3713f7c74a394a99b8bb89bb0b313, type: 2}
+  - {fileID: 2100000, guid: 73b6ef9c72f7b2341b57f84648e3de72, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

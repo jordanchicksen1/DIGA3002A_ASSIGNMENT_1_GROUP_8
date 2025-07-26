@@ -36,10 +36,20 @@ public class player : MonoBehaviour
     //spell casting
     public Transform spellSpawnPoint;
     public manaManager manaManager;
+    
 
     public GameObject fireProjectile;
     public float fireProjectileSpeed;
     public bool isShootingSpell;
+    public bool hasFireSpell = false;
+
+    public GameObject waterProjectile;
+    public float waterProjectileSpeed;
+    public bool hasWaterSpell = false;
+
+    public bool hasRockSpell = false;
+
+    public bool hasWindSpell = false;
 
     //potion stuff
     public potionManager potionManager;
@@ -198,7 +208,7 @@ public class player : MonoBehaviour
     public void CastSpell()
     {
         //fire spell
-        if(manaManager.currentMana > 4.99f)
+        if(manaManager.currentMana > 4.99f && hasFireSpell == true)
         {
             var projectile = Instantiate(fireProjectile, spellSpawnPoint.position, spellSpawnPoint.rotation);
             var rb = projectile.GetComponent<Rigidbody>();
@@ -232,12 +242,12 @@ public class player : MonoBehaviour
 
     public void ChangePotion()
     {
-        if(healthPotionEquipped == true) 
+        if(healthPotionEquipped == true && healthManager.currentHealth < 100) 
         {
             StartCoroutine(HealthPotionSwitch());
         }
 
-        if (manaPotionEquipped == true)
+        if (manaPotionEquipped == true && manaManager.currentMana < 100)
         {
            StartCoroutine(ManaPotionSwitch());
      
@@ -278,6 +288,12 @@ public class player : MonoBehaviour
         if (other.tag == "HealthPotion")
         {
             potionManager.addHealthPotion();
+            Destroy(other.gameObject);
+        }
+
+        if(other.tag == "FireSpell")
+        {
+            hasFireSpell = true;
             Destroy(other.gameObject);
         }
     }
