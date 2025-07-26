@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -42,14 +43,18 @@ public class player : MonoBehaviour
     public float fireProjectileSpeed;
     public bool isShootingSpell;
     public bool hasFireSpell = false;
+    public GameObject fireTextPopUp;
 
     public GameObject waterProjectile;
     public float waterProjectileSpeed;
     public bool hasWaterSpell = false;
+    public GameObject waterTextPopUp;
 
     public bool hasRockSpell = false;
+    public GameObject rockTextPopUp;
 
     public bool hasWindSpell = false;
+    public GameObject windTextPopUp;
 
     //potion stuff
     public potionManager potionManager;
@@ -57,9 +62,13 @@ public class player : MonoBehaviour
    
     public bool manaPotionEquipped = false;
     public GameObject manaPotionDisplay;
+    public GameObject manaTextPopUp;
     
     public bool healthPotionEquipped = true;
     public GameObject healthPotionDisplay;
+    public GameObject healthTextPopUp;
+
+
 
     [Header("CROUCH SETTINGS")]
     [Space(5)]
@@ -292,24 +301,28 @@ public class player : MonoBehaviour
         {
             potionManager.addManaPotion();
             Destroy(other.gameObject);
+            StartCoroutine(ManaPotionPopUp());
         }
 
         if (other.tag == "HealthPotion")
         {
             potionManager.addHealthPotion();
             Destroy(other.gameObject);
+            StartCoroutine(HealthPotionPopUp());
         }
 
         if(other.tag == "FireSpell")
         {
             hasFireSpell = true;
             Destroy(other.gameObject);
+            StartCoroutine(FireSpellPopUp());
         }
 
         if (other.tag == "WaterSpell")
         {
             hasWaterSpell = true;
             Destroy(other.gameObject);
+            StartCoroutine(WaterSpellPopUp());
         }
     }
     public void OnTriggerStay (Collider other)
@@ -363,5 +376,53 @@ public class player : MonoBehaviour
         healthPotionEquipped = true;
         healthPotionDisplay.SetActive(true);
         Debug.Log("should change to health potion");
+    }
+
+    private IEnumerator FireSpellPopUp()
+    {
+        yield return new WaitForSeconds(0f);
+        fireTextPopUp.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        fireTextPopUp.SetActive(false);
+    }
+
+    private IEnumerator WaterSpellPopUp()
+    {
+        yield return new WaitForSeconds(0f);
+        waterTextPopUp.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        waterTextPopUp.SetActive(false);
+    }
+
+    private IEnumerator rockSpellPopUp()
+    {
+        yield return new WaitForSeconds(0f);
+        rockTextPopUp.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        rockTextPopUp.SetActive(false);
+    }
+
+    private IEnumerator WindSpellPopUp()
+    {
+        yield return new WaitForSeconds(0f);
+        windTextPopUp.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        windTextPopUp.SetActive(false);
+    }
+
+    private IEnumerator HealthPotionPopUp()
+    {
+        yield return new WaitForSeconds(0f);
+        healthTextPopUp.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        healthTextPopUp.SetActive(false);
+    }
+
+    private IEnumerator ManaPotionPopUp()
+    {
+        yield return new WaitForSeconds(0f);
+        manaTextPopUp.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        manaTextPopUp.SetActive(false);
     }
 }
