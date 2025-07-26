@@ -5329,6 +5329,13 @@ MonoBehaviour:
     type: 3}
   fireProjectileSpeed: 25
   isShootingSpell: 0
+  hasFireSpell: 0
+  waterProjectile: {fileID: 852052349587906526, guid: 05ac7a3a6b6c6af40b0e1bddc3854bc4,
+    type: 3}
+  waterProjectileSpeed: 15
+  hasWaterSpell: 0
+  hasRockSpell: 0
+  hasWindSpell: 0
   potionManager: {fileID: 1516909691}
   healthManager: {fileID: 1813743642}
   manaPotionEquipped: 0
@@ -6386,7 +6393,7 @@ PrefabInstance:
     - target: {fileID: 8578806947652902250, guid: beb4eb11b7adfa4499bccb1f7677fbe3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.33
+      value: -1.89
       objectReference: {fileID: 0}
     - target: {fileID: 8578806947652902250, guid: beb4eb11b7adfa4499bccb1f7677fbe3,
         type: 3}
@@ -6454,7 +6461,7 @@ PrefabInstance:
     - target: {fileID: 7781090875906174115, guid: a5147185dace6414aab242ea2accaac4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.54
+      value: -9.67
       objectReference: {fileID: 0}
     - target: {fileID: 7781090875906174115, guid: a5147185dace6414aab242ea2accaac4,
         type: 3}
@@ -6522,7 +6529,7 @@ PrefabInstance:
     - target: {fileID: 5098387637555583929, guid: 1fb917db9044af244995b878884b1afc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.38
+      value: -5.8
       objectReference: {fileID: 0}
     - target: {fileID: 5098387637555583929, guid: 1fb917db9044af244995b878884b1afc,
         type: 3}
@@ -6658,7 +6665,7 @@ PrefabInstance:
     - target: {fileID: 7487949586917496189, guid: e9d2cb48250adf3408ffc3161714f67b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.66
+      value: -13.57
       objectReference: {fileID: 0}
     - target: {fileID: 7487949586917496189, guid: e9d2cb48250adf3408ffc3161714f67b,
         type: 3}

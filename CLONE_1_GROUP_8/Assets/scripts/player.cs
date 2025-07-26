@@ -215,6 +215,15 @@ public class player : MonoBehaviour
             rb.velocity = spellSpawnPoint.forward * fireProjectileSpeed;
             manaManager.UseFireSpell();
         }
+
+        //water spell
+        if (manaManager.currentMana > 4.99f && hasWaterSpell == true)
+        {
+            var projectile = Instantiate(waterProjectile, spellSpawnPoint.position, spellSpawnPoint.rotation);
+            var rb = projectile.GetComponent<Rigidbody>();
+            rb.velocity = spellSpawnPoint.forward * waterProjectileSpeed;
+            manaManager.UseFireSpell();
+        }
     }
 
     public void DrinkPotion()
@@ -294,6 +303,12 @@ public class player : MonoBehaviour
         if(other.tag == "FireSpell")
         {
             hasFireSpell = true;
+            Destroy(other.gameObject);
+        }
+
+        if (other.tag == "WaterSpell")
+        {
+            hasWaterSpell = true;
             Destroy(other.gameObject);
         }
     }
