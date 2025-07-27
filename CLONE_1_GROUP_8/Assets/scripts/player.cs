@@ -14,6 +14,7 @@ public class player : MonoBehaviour
     public float lookSpeed; // Sensitivity of the camera movement
     public float gravity = -9.81f; // Gravity value
     public float jumpHeight = 1.0f; // Height of the jump
+    public float windJumpHeight = 1.0f; //wind jump height
     //public Transform playerCamera; // Reference to the player's camera
 
     // Private variables to store input values and the character controller
@@ -44,17 +45,25 @@ public class player : MonoBehaviour
     public bool isShootingSpell;
     public bool hasFireSpell = false;
     public GameObject fireTextPopUp;
+    public GameObject unknownSpell1;
+    public GameObject fireSpellUI;
 
     public GameObject waterProjectile;
     public float waterProjectileSpeed;
     public bool hasWaterSpell = false;
     public GameObject waterTextPopUp;
+    public GameObject unknownSpell2;
+    public GameObject waterSpellUI;
 
     public bool hasRockSpell = false;
     public GameObject rockTextPopUp;
+    public GameObject unknownSpell3;
+    public GameObject rockSpellUI;
 
     public bool hasWindSpell = false;
     public GameObject windTextPopUp;
+    public GameObject unknownSpell4;
+    public GameObject windSpellUI;
 
     //potion stuff
     public potionManager potionManager;
@@ -233,6 +242,15 @@ public class player : MonoBehaviour
             rb.velocity = spellSpawnPoint.forward * waterProjectileSpeed;
             manaManager.UseFireSpell();
         }
+
+        //rock spell
+
+        //wind spell
+        if(manaManager.currentMana > 4.99f && hasWindSpell == true)
+        {
+            _velocity.y = Mathf.Sqrt(windJumpHeight * -2f * gravity);
+            manaManager.UseFireSpell();
+        }
     }
 
     public void DrinkPotion()
@@ -254,7 +272,7 @@ public class player : MonoBehaviour
 
     public void ChangeSpell()
     {
-        
+        //locked spells segment for if you don't have the next spell
             
     }
 
@@ -323,6 +341,13 @@ public class player : MonoBehaviour
             hasWaterSpell = true;
             Destroy(other.gameObject);
             StartCoroutine(WaterSpellPopUp());
+        }
+
+        if(other.tag == "WindSpell")
+        {
+            hasWindSpell = true;
+            Destroy(other.gameObject);
+            StartCoroutine(WindSpellPopUp());
         }
     }
     public void OnTriggerStay (Collider other)
