@@ -37,30 +37,45 @@ public class player : MonoBehaviour
 
     //spell casting
     public Transform spellSpawnPoint;
+    public Transform spellSpawnPoint2;
+    public Transform spellSpawnPoint3;
     public manaManager manaManager;
     
-
+    //fire 
     public GameObject fireProjectile;
     public float fireProjectileSpeed;
     public bool isShootingSpell;
-    public bool hasFireSpell = false;
+    public bool fireSpellEquipped = false;
+    public bool unknownSpellOneEquipped = true;
+    public bool hasUnlockedFireSpell = false;
     public GameObject fireTextPopUp;
     public GameObject unknownSpell1;
     public GameObject fireSpellUI;
 
+    //water
     public GameObject waterProjectile;
     public float waterProjectileSpeed;
-    public bool hasWaterSpell = false;
+    public bool waterSpellEquipped = false;
+    public bool unknownSpellTwoEquipped = false;
+    public bool hasUnlockedWaterSpell = false;
     public GameObject waterTextPopUp;
     public GameObject unknownSpell2;
     public GameObject waterSpellUI;
 
-    public bool hasRockSpell = false;
+    //rock
+    public GameObject rockProjectile;
+    public float rockProjectileSpeed;
+    public bool rockSpellEquipped = false;
+    public bool unknownSpellThreeEquipped = false;
+    public bool hasUnlockedRockSpell = false;
     public GameObject rockTextPopUp;
     public GameObject unknownSpell3;
     public GameObject rockSpellUI;
 
-    public bool hasWindSpell = false;
+    //wind
+    public bool windSpellEquipped = false;
+    public bool unknownSpellFourEquipped = false;
+    public bool hasUnlockedWindSpell = false;
     public GameObject windTextPopUp;
     public GameObject unknownSpell4;
     public GameObject windSpellUI;
@@ -226,30 +241,47 @@ public class player : MonoBehaviour
     public void CastSpell()
     {
         //fire spell
-        if(manaManager.currentMana > 4.99f && hasFireSpell == true)
+        if(manaManager.currentMana > 4.99f && fireSpellEquipped == true)
         {
             var projectile = Instantiate(fireProjectile, spellSpawnPoint.position, spellSpawnPoint.rotation);
             var rb = projectile.GetComponent<Rigidbody>();
             rb.velocity = spellSpawnPoint.forward * fireProjectileSpeed;
             manaManager.UseFireSpell();
+            Destroy(projectile, 1f);
         }
 
         //water spell
-        if (manaManager.currentMana > 4.99f && hasWaterSpell == true)
+        if (manaManager.currentMana > 4.99f && waterSpellEquipped == true)
         {
             var projectile = Instantiate(waterProjectile, spellSpawnPoint.position, spellSpawnPoint.rotation);
             var rb = projectile.GetComponent<Rigidbody>();
             rb.velocity = spellSpawnPoint.forward * waterProjectileSpeed;
-            manaManager.UseFireSpell();
+            manaManager.UseWaterSpell();
+            Destroy(projectile, 1f);
         }
 
         //rock spell
+        if(manaManager.currentMana > 14.99 && rockSpellEquipped == true)
+        {
+            var projectile1 = Instantiate(rockProjectile, spellSpawnPoint.position, spellSpawnPoint.rotation);
+            var rb1 = projectile1.GetComponent<Rigidbody>();
+            rb1.velocity = spellSpawnPoint.forward * rockProjectileSpeed;
+
+            var projectile2 = Instantiate(rockProjectile, spellSpawnPoint2.position, spellSpawnPoint2.rotation);
+            var rb2 = projectile2.GetComponent<Rigidbody>();
+            rb2.velocity = spellSpawnPoint2.forward * rockProjectileSpeed;
+
+            var projectile3 = Instantiate(rockProjectile, spellSpawnPoint3.position, spellSpawnPoint3.rotation);
+            var rb3 = projectile3.GetComponent<Rigidbody>();
+            rb3.velocity = spellSpawnPoint3.forward * rockProjectileSpeed;
+            manaManager.UseRockSpell();
+        }
 
         //wind spell
-        if(manaManager.currentMana > 4.99f && hasWindSpell == true)
+        if(manaManager.currentMana > 4.99f && windSpellEquipped == true)
         {
             _velocity.y = Mathf.Sqrt(windJumpHeight * -2f * gravity);
-            manaManager.UseFireSpell();
+            manaManager.UseWindSpell();
         }
     }
 
@@ -331,23 +363,110 @@ public class player : MonoBehaviour
 
         if(other.tag == "FireSpell")
         {
-            hasFireSpell = true;
+            hasUnlockedFireSpell = true;
+            //setting fire spell bool to true
+            fireSpellEquipped = true;
+            waterSpellEquipped = false;
+            rockSpellEquipped = false;
+            windSpellEquipped = false;
+            unknownSpellOneEquipped = false;
+            unknownSpellTwoEquipped = false;
+            unknownSpellThreeEquipped = false;
+            unknownSpellFourEquipped = false;
+
+            //setting UI to display correctly
+            fireSpellUI.SetActive(true);
+            waterSpellUI.SetActive(false);
+            windSpellUI.SetActive(false);
+            rockSpellUI.SetActive(false);
+            unknownSpell1.SetActive(false);
+            unknownSpell2.SetActive(false);
+            unknownSpell3.SetActive(false);
+            unknownSpell4.SetActive(false);
+
             Destroy(other.gameObject);
             StartCoroutine(FireSpellPopUp());
         }
 
         if (other.tag == "WaterSpell")
         {
-            hasWaterSpell = true;
+            hasUnlockedWaterSpell = true;
+            //setting water spell bool to true
+            fireSpellEquipped = false;
+            waterSpellEquipped = true;
+            rockSpellEquipped = false;
+            windSpellEquipped = false;
+            unknownSpellOneEquipped = false;
+            unknownSpellTwoEquipped = false;
+            unknownSpellThreeEquipped = false;
+            unknownSpellFourEquipped = false;
+
+            //setting UI to display correctly
+            fireSpellUI.SetActive(false);
+            waterSpellUI.SetActive(true);
+            windSpellUI.SetActive(false);
+            rockSpellUI.SetActive(false);
+            unknownSpell1.SetActive(false);
+            unknownSpell2.SetActive(false);
+            unknownSpell3.SetActive(false);
+            unknownSpell4.SetActive(false);
+
             Destroy(other.gameObject);
             StartCoroutine(WaterSpellPopUp());
         }
 
         if(other.tag == "WindSpell")
         {
-            hasWindSpell = true;
+            hasUnlockedWindSpell = true;
+            //setting wind spell bool to true
+            fireSpellEquipped = false;
+            waterSpellEquipped = false;
+            rockSpellEquipped = false;
+            windSpellEquipped = true;
+            unknownSpellOneEquipped = false;
+            unknownSpellTwoEquipped = false;
+            unknownSpellThreeEquipped = false;
+            unknownSpellFourEquipped = false;
+
+            //setting UI to display correctly
+            fireSpellUI.SetActive(true);
+            waterSpellUI.SetActive(false);
+            windSpellUI.SetActive(false);
+            rockSpellUI.SetActive(true);
+            unknownSpell1.SetActive(false);
+            unknownSpell2.SetActive(false);
+            unknownSpell3.SetActive(false);
+            unknownSpell4.SetActive(false);
+
             Destroy(other.gameObject);
             StartCoroutine(WindSpellPopUp());
+        }
+
+        if(other.tag == "RockSpell")
+        {
+            hasUnlockedRockSpell = true;    
+            //setting rock spell bool to true
+            fireSpellEquipped = false;
+            waterSpellEquipped = false;
+            rockSpellEquipped = true;
+            windSpellEquipped = false;
+            unknownSpellOneEquipped = false;
+            unknownSpellTwoEquipped = false;
+            unknownSpellThreeEquipped = false;
+            unknownSpellFourEquipped = false;
+
+            //setting UI to display correctly
+            fireSpellUI.SetActive(false);
+            waterSpellUI.SetActive(false);
+            windSpellUI.SetActive(false);
+            rockSpellUI.SetActive(true);
+            unknownSpell1.SetActive(false);
+            unknownSpell2.SetActive(false);
+            unknownSpell3.SetActive(false);
+            unknownSpell4.SetActive(false);
+
+            Destroy(other.gameObject);
+            StartCoroutine(RockSpellPopUp());
         }
     }
     public void OnTriggerStay (Collider other)
@@ -419,7 +538,7 @@ public class player : MonoBehaviour
         waterTextPopUp.SetActive(false);
     }
 
-    private IEnumerator rockSpellPopUp()
+    private IEnumerator RockSpellPopUp()
     {
         yield return new WaitForSeconds(0f);
         rockTextPopUp.SetActive(true);

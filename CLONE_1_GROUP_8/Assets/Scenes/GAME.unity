@@ -836,6 +836,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312189657}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &315708604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 315708605}
+  m_Layer: 0
+  m_Name: spellSpawnPoint3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &315708605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315708604}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.97629607, y: -0, z: 0.21643952, w: 0}
+  m_LocalPosition: {x: -0.938, y: 0.514, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752342878}
+  m_LocalEulerAnglesHint: {x: 180, y: -25, z: 0}
 --- !u!1 &317221998
 GameObject:
   m_ObjectHideFlags: 0
@@ -7575,6 +7606,37 @@ RectTransform:
   m_AnchoredPosition: {x: 3, y: -486.2}
   m_SizeDelta: {x: 441.1606, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1560159168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560159169}
+  m_Layer: 0
+  m_Name: spellSpawnPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560159169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560159168}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.97629607, y: 0, z: -0.2164396, w: 0}
+  m_LocalPosition: {x: -0.938, y: 0.514, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1752342878}
+  m_LocalEulerAnglesHint: {x: 180, y: 25, z: 0}
 --- !u!1 &1667255177
 GameObject:
   m_ObjectHideFlags: 0
@@ -7960,6 +8022,8 @@ Transform:
   - {fileID: 856821580}
   - {fileID: 506793380}
   - {fileID: 975885484}
+  - {fileID: 1560159169}
+  - {fileID: 315708605}
   - {fileID: 1237271910}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -7986,30 +8050,43 @@ MonoBehaviour:
   isPaused: 0
   pauseScreen: {fileID: 851976556}
   spellSpawnPoint: {fileID: 975885484}
+  spellSpawnPoint2: {fileID: 1560159169}
+  spellSpawnPoint3: {fileID: 315708605}
   manaManager: {fileID: 1309388900}
   fireProjectile: {fileID: 8043817035299975166, guid: 1496604efd026f0449bb5433105d335f,
     type: 3}
   fireProjectileSpeed: 25
   isShootingSpell: 0
-  hasFireSpell: 0
+  fireSpellEquipped: 0
+  unknownSpellOneEquipped: 1
+  hasUnlockedFireSpell: 0
   fireTextPopUp: {fileID: 1522886454}
-  unknownSpell1: {fileID: 0}
-  fireSpellUI: {fileID: 0}
+  unknownSpell1: {fileID: 1335622857}
+  fireSpellUI: {fileID: 345294446}
   waterProjectile: {fileID: 852052349587906526, guid: 05ac7a3a6b6c6af40b0e1bddc3854bc4,
     type: 3}
   waterProjectileSpeed: 15
-  hasWaterSpell: 0
+  waterSpellEquipped: 0
+  unknownSpellTwoEquipped: 0
+  hasUnlockedWaterSpell: 0
   waterTextPopUp: {fileID: 833169850}
-  unknownSpell2: {fileID: 0}
-  waterSpellUI: {fileID: 0}
-  hasRockSpell: 0
+  unknownSpell2: {fileID: 574017548}
+  waterSpellUI: {fileID: 330944576}
+  rockProjectile: {fileID: 6152838482185107791, guid: f69a16276680ba841aea2afbf5cef741,
+    type: 3}
+  rockProjectileSpeed: 35
+  rockSpellEquipped: 0
+  unknownSpellThreeEquipped: 0
+  hasUnlockedRockSpell: 0
   rockTextPopUp: {fileID: 1996094456}
-  unknownSpell3: {fileID: 0}
-  rockSpellUI: {fileID: 0}
-  hasWindSpell: 0
+  unknownSpell3: {fileID: 438279129}
+  rockSpellUI: {fileID: 1011519036}
+  windSpellEquipped: 0
+  unknownSpellFourEquipped: 0
+  hasUnlockedWindSpell: 0
   windTextPopUp: {fileID: 1699822649}
-  unknownSpell4: {fileID: 0}
-  windSpellUI: {fileID: 0}
+  unknownSpell4: {fileID: 337900968}
+  windSpellUI: {fileID: 180940196}
   potionManager: {fileID: 1516909691}
   healthManager: {fileID: 1813743642}
   manaPotionEquipped: 0

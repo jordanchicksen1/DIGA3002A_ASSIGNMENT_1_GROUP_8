@@ -53,6 +53,22 @@ public class manaManager : MonoBehaviour
 
     }
 
+    [ContextMenu("UseWindSpell")]
+    public void UseWindSpell()
+    {
+        currentMana = currentMana - 5f;
+        updateManaBar();
+
+    }
+
+    [ContextMenu("UseRockSpell")]
+    public void UseRockSpell()
+    {
+        currentMana = currentMana - 15f;
+        updateManaBar();
+
+    }
+
     [ContextMenu("DrankManaPotion")]
     public void DrankManaPotion()
     {
