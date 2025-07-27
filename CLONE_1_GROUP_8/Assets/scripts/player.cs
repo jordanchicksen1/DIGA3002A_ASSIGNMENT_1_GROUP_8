@@ -304,8 +304,81 @@ public class player : MonoBehaviour
 
     public void ChangeSpell()
     {
-        //locked spells segment for if you don't have the next spell
-            
+        //locked spells segment for if you don't the spell you've equipped but either have or don't have the next spell
+        if(unknownSpellOneEquipped == true && hasUnlockedWaterSpell == false)
+        {
+            StartCoroutine(USOneToUSTwo());
+        }
+        else if(unknownSpellOneEquipped == true && hasUnlockedWaterSpell == true)
+        {
+            StartCoroutine(USOneToWaterSpell());
+        }
+
+        if(unknownSpellTwoEquipped == true && hasUnlockedRockSpell == false)
+        {
+            StartCoroutine(USTwoToUSThree());
+        }
+        else if (unknownSpellTwoEquipped == true && hasUnlockedRockSpell == true)
+        {
+            StartCoroutine(USTwoToRockSpell());
+        }
+
+        if(unknownSpellThreeEquipped == true && hasUnlockedWindSpell == false)
+        {
+            StartCoroutine(USThreeToUSFour());
+        }
+        else if (unknownSpellThreeEquipped == true && hasUnlockedWindSpell == true)
+        {
+            StartCoroutine(USThreeToWindSpell());
+        }
+
+        if (unknownSpellFourEquipped == true && hasUnlockedFireSpell == false)
+        {
+            StartCoroutine(USFourToUSOne());
+        }
+        else if(unknownSpellFourEquipped == true && hasUnlockedFireSpell== true)
+        {
+            StartCoroutine(USFourToFireSpell());
+        }
+
+        //unlocked spells segment for if you have the spell you've equipped but do or don't have the next spell equipped 
+        if(fireSpellEquipped == true && hasUnlockedWaterSpell == false)
+        {
+            StartCoroutine(FireSpellToUSTwo());
+        }
+        else if(fireSpellEquipped == true && hasUnlockedWaterSpell == true)
+        {
+            StartCoroutine(FireSpellToWaterSpell());
+        }
+
+        if(waterSpellEquipped == true && hasUnlockedRockSpell == false)
+        {
+            StartCoroutine(WaterSpellToUSThree());
+        }
+        else if(waterSpellEquipped == true && hasUnlockedRockSpell == true)
+        {
+            StartCoroutine(WaterSpellToRockSpell());
+        }
+        
+        if(rockSpellEquipped == true && hasUnlockedWindSpell == false)
+        {
+            StartCoroutine(RockSpellToUSFour());
+        }
+
+        if(rockSpellEquipped == true && hasUnlockedWindSpell == true)
+        {
+            StartCoroutine(RockSpellToWindSpell());
+        }
+
+        if(windSpellEquipped == true && hasUnlockedFireSpell == false)
+        {
+            StartCoroutine(WindSpellToUSOne());
+        }
+        else if(windSpellEquipped == true && hasUnlockedFireSpell== true)
+        {
+            StartCoroutine(WindSpellToFireSpell());
+        }
+
     }
 
     public void ChangePotion()
@@ -429,10 +502,10 @@ public class player : MonoBehaviour
             unknownSpellFourEquipped = false;
 
             //setting UI to display correctly
-            fireSpellUI.SetActive(true);
+            fireSpellUI.SetActive(false);
             waterSpellUI.SetActive(false);
-            windSpellUI.SetActive(false);
-            rockSpellUI.SetActive(true);
+            windSpellUI.SetActive(true);
+            rockSpellUI.SetActive(false);
             unknownSpell1.SetActive(false);
             unknownSpell2.SetActive(false);
             unknownSpell3.SetActive(false);
@@ -568,5 +641,183 @@ public class player : MonoBehaviour
         manaTextPopUp.SetActive(true);
         yield return new WaitForSeconds(2f);
         manaTextPopUp.SetActive(false);
+    }
+
+    //spell switching coroutines
+
+    private IEnumerator USOneToUSTwo()
+    {
+        yield return new WaitForSeconds(0f);
+        unknownSpell1.SetActive(false);
+        unknownSpellOneEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        unknownSpell2.SetActive(true);
+        unknownSpellTwoEquipped = true;
+        Debug.Log("changed to unknown spell 2");
+    }
+
+    private IEnumerator USOneToWaterSpell()
+    {
+        yield return new WaitForSeconds(0f);
+        unknownSpell1.SetActive(false);
+        unknownSpellOneEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        waterSpellUI.SetActive(true);
+        waterSpellEquipped = true;
+        Debug.Log("changed to water spell");
+    }
+
+    private IEnumerator USTwoToUSThree() 
+    {  
+        yield return new WaitForSeconds(0f);
+        unknownSpell2.SetActive(false);
+        unknownSpellTwoEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        unknownSpell3.SetActive(true);
+        unknownSpellThreeEquipped = true;
+        Debug.Log(" changed to unknown spell 3");
+    }
+
+    private IEnumerator USTwoToRockSpell()
+    {
+        yield return new WaitForSeconds(0f);
+        unknownSpell2.SetActive(false);
+        unknownSpellTwoEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        rockSpellUI.SetActive(true);
+        rockSpellEquipped = true;
+        Debug.Log(" changed to rock spell");
+    }
+
+    private IEnumerator USThreeToUSFour()
+    {
+        yield return new WaitForSeconds(0f);
+        unknownSpell3.SetActive(false);
+        unknownSpellThreeEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        unknownSpell4.SetActive(true);
+        unknownSpellFourEquipped = true;
+        Debug.Log(" changed to rock spell");
+    }
+
+    private IEnumerator USThreeToWindSpell()
+    {
+        yield return new WaitForSeconds(0f);
+        unknownSpell3.SetActive(false);
+        unknownSpellThreeEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        windSpellUI.SetActive(true);
+        windSpellEquipped = true;
+        Debug.Log(" changed to rock spell");
+    }
+
+    private IEnumerator USFourToUSOne()
+    {
+        yield return new WaitForSeconds(0f);
+        unknownSpell4.SetActive(false);
+        unknownSpellFourEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        unknownSpell1.SetActive(true);
+        unknownSpellOneEquipped = true;
+        Debug.Log(" changed to rock spell");
+    }
+
+    private IEnumerator USFourToFireSpell() 
+    {
+        yield return new WaitForSeconds(0f);
+        unknownSpell4.SetActive(false);
+        unknownSpellFourEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        fireSpellUI.SetActive(true);
+        fireSpellEquipped = true;
+        Debug.Log(" changed to rock spell");
+    }
+
+    private IEnumerator FireSpellToUSTwo()
+    {
+        yield return new WaitForSeconds(0f);
+        fireSpellUI.SetActive(false);
+        fireSpellEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        unknownSpell2.SetActive(true);
+        unknownSpellTwoEquipped = true;
+        Debug.Log("changed to unknown spell 2");
+    }
+
+    private IEnumerator FireSpellToWaterSpell() 
+    {  
+        yield return new WaitForSeconds(0f);
+        fireSpellUI.SetActive(false);
+        fireSpellEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        waterSpellUI.SetActive(true);
+        waterSpellEquipped = true;
+        Debug.Log("changed to water spell");
+    }
+
+    private IEnumerator WaterSpellToUSThree()
+    {
+        yield return new WaitForSeconds(0f);
+        waterSpellUI.SetActive(false);
+        waterSpellEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        unknownSpell3.SetActive(true);
+        unknownSpellThreeEquipped = true;
+        Debug.Log("changed to unknow spell 3");
+    }
+
+    private IEnumerator WaterSpellToRockSpell()
+    {
+        yield return new WaitForSeconds(0f);
+        waterSpellUI.SetActive(false);
+        waterSpellEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        rockSpellUI.SetActive(true);
+        rockSpellEquipped = true;
+        Debug.Log("changed to rock spell");
+    }
+
+    private IEnumerator RockSpellToUSFour()
+    {
+        yield return new WaitForSeconds(0f);
+        rockSpellUI.SetActive(false);
+        rockSpellEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        unknownSpell4.SetActive(true);
+        unknownSpellFourEquipped = true;
+        Debug.Log("changed to unknown spell 4");
+    }
+
+    private IEnumerator RockSpellToWindSpell()
+    {
+        yield return new WaitForSeconds(0f);
+        rockSpellUI.SetActive(false);
+        rockSpellEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        windSpellUI.SetActive(true);
+        windSpellEquipped = true;
+        Debug.Log("changed to wind spell");
+    }
+
+    private IEnumerator WindSpellToUSOne() 
+    { 
+        yield return new WaitForSeconds(0f);
+        windSpellUI.SetActive(false);
+        windSpellEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        unknownSpell1.SetActive(true);
+        unknownSpellOneEquipped = true;
+        Debug.Log("changed to unknown spell 1");
+    }
+
+    private IEnumerator WindSpellToFireSpell()
+    {
+        yield return new WaitForSeconds(0f);
+        windSpellUI.SetActive(false);
+        windSpellEquipped = false;
+        yield return new WaitForSeconds(0.01f);
+        fireSpellUI.SetActive(true);
+        fireSpellEquipped = true;
+        Debug.Log("changed to fire spell");
     }
 }
