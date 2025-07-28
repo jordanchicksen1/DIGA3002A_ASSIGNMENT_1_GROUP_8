@@ -19,6 +19,7 @@ TagManager:
   - WaterShield
   - Key
   - Door
+  - Checkpoint1
   layers:
   - Default
   - TransparentFX
