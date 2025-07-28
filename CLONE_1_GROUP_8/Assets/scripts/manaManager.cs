@@ -48,7 +48,7 @@ public class manaManager : MonoBehaviour
     [ContextMenu("UseWaterSpell")]
     public void UseWaterSpell()
     {
-        currentMana = currentMana - 5f;
+        currentMana = currentMana - 10f;
         updateManaBar();
 
     }

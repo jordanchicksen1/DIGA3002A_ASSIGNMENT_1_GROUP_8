@@ -53,8 +53,7 @@ public class player : MonoBehaviour
     public GameObject fireSpellUI;
 
     //water
-    public GameObject waterProjectile;
-    public float waterProjectileSpeed;
+    public GameObject waterShield;
     public bool waterSpellEquipped = false;
     public bool unknownSpellTwoEquipped = false;
     public bool hasUnlockedWaterSpell = false;
@@ -253,11 +252,9 @@ public class player : MonoBehaviour
         //water spell
         if (manaManager.currentMana > 4.99f && waterSpellEquipped == true)
         {
-            var projectile = Instantiate(waterProjectile, spellSpawnPoint.position, spellSpawnPoint.rotation);
-            var rb = projectile.GetComponent<Rigidbody>();
-            rb.velocity = spellSpawnPoint.forward * waterProjectileSpeed;
+            StartCoroutine(WaterShield());
             manaManager.UseWaterSpell();
-            Destroy(projectile, 1f);
+            
         }
 
         //rock spell
@@ -819,5 +816,14 @@ public class player : MonoBehaviour
         fireSpellUI.SetActive(true);
         fireSpellEquipped = true;
         Debug.Log("changed to fire spell");
+    }
+
+    //water shield
+    private IEnumerator WaterShield()
+    {
+        yield return new WaitForSeconds(0f);
+        waterShield.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        waterShield.SetActive(false);
     }
 }

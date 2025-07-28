@@ -16,6 +16,7 @@ TagManager:
   - RockSpell
   - WindSpell
   - RockProjectile
+  - WaterShield
   layers:
   - Default
   - TransparentFX
