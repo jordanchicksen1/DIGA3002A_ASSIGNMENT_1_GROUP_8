@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.Sqlite;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +24,18 @@ public class player : MonoBehaviour
     private Vector3 _velocity; // Velocity of the player
     private CharacterController _characterController; // Reference to the CharacterController component
 
+    [Header("CROUCH SETTINGS")]
+    [Space(5)]
+    public float crouchHeight = 1f; //make short
+    public float standingHeight = 2f; //make normal
+    public float crouchSpeed = 1.5f; //short speed
+    public bool isCrouching = false; //if short or normal
+
+    public Rigidbody rb;
+
+    //key stuff
+    public keyManager keyManager;
+    public GameObject keyTextPopUp;
 
     //dash
     public bool canDodge = true;
@@ -91,16 +104,11 @@ public class player : MonoBehaviour
     public GameObject healthPotionDisplay;
     public GameObject healthTextPopUp;
 
-
-
-    [Header("CROUCH SETTINGS")]
-    [Space(5)]
-    public float crouchHeight = 1f; //make short
-    public float standingHeight = 2f; //make normal
-    public float crouchSpeed = 1.5f; //short speed
-    public bool isCrouching = false; //if short or normal
-
-    public Rigidbody rb;
+    //interact stuff
+    public Transform playerNose;
+    public float minRange = 1f;
+    public GameObject unlockDoorText;
+    public GameObject doorLockedText;
 
     private void OnEnable()
     {
@@ -166,6 +174,7 @@ public class player : MonoBehaviour
         Move();
         Look();
         ApplyGravity();
+        CheckInteract();
     }
 
     public void Move()
@@ -234,7 +243,51 @@ public class player : MonoBehaviour
 
     public void Interact()
     {
+        unlockDoorText.SetActive(false);
+        doorLockedText.SetActive(false);
 
+        Ray ray = new Ray(playerNose.position, playerNose.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, minRange))
+        {
+
+            if(hit.collider.CompareTag("Door"))
+            {
+                if (keyManager.key > 0.99)
+                {
+                    Destroy(hit.collider.gameObject);
+                    keyManager.subtractKey();
+                }
+                else
+                {
+                    doorLockedText.SetActive(true);
+                    StartCoroutine(DoorLocked());
+                    return;
+                }
+            }
+         
+        }
+    }
+
+    public void CheckInteract()
+    {
+        Ray ray = new Ray(playerNose.position, playerNose.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, minRange))
+        {
+            if (hit.collider.CompareTag("Door"))
+            {
+                unlockDoorText.SetActive(true);
+                Debug.Log("door text should show");
+            }
+            
+        }
+        else
+        {
+            unlockDoorText.SetActive(false);
+        }
     }
 
     public void CastSpell()
@@ -538,6 +591,13 @@ public class player : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(RockSpellPopUp());
         }
+
+        if (other.tag == "Key")
+        {
+            Destroy(other.gameObject);
+            keyManager.addKey();
+            StartCoroutine(KeyPopUp());
+        }
     }
     public void OnTriggerStay (Collider other)
     {
@@ -638,6 +698,14 @@ public class player : MonoBehaviour
         manaTextPopUp.SetActive(true);
         yield return new WaitForSeconds(2f);
         manaTextPopUp.SetActive(false);
+    }
+
+    private IEnumerator KeyPopUp()
+    {
+        yield return new WaitForSeconds(0f);
+        keyTextPopUp.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        keyTextPopUp.SetActive(false);
     }
 
     //spell switching coroutines
@@ -823,7 +891,16 @@ public class player : MonoBehaviour
     {
         yield return new WaitForSeconds(0f);
         waterShield.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         waterShield.SetActive(false);
+    }
+
+    //door locked text
+    private IEnumerator DoorLocked()
+    {
+        yield return new WaitForSeconds(0f);
+        unlockDoorText.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        doorLockedText.SetActive(false);
     }
 }

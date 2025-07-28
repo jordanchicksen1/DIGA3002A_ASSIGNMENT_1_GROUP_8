@@ -17,6 +17,8 @@ TagManager:
   - WindSpell
   - RockProjectile
   - WaterShield
+  - Key
+  - Door
   layers:
   - Default
   - TransparentFX
