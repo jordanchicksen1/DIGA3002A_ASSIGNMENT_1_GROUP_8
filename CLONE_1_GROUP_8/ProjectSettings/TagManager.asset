@@ -26,6 +26,9 @@ TagManager:
   - Checkpoint5
   - KingCoin
   - QueenCrystal
+  - FireObstacle
+  - RockObstacle
+  - WaterObstacle
   layers:
   - Default
   - TransparentFX
