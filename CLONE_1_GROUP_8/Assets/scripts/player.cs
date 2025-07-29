@@ -288,7 +288,42 @@ public class player : MonoBehaviour
                 healthManager.FullHeal();
                 manaManager.FullMana();
             }
-         
+
+            if (hit.collider.CompareTag("Checkpoint2"))
+            {
+                checkpointSetText.SetActive(true);
+                StartCoroutine(CheckpointSet());
+                checkpointTwo = true;
+                healthManager.FullHeal();
+                manaManager.FullMana();
+            }
+
+            if (hit.collider.CompareTag("Checkpoint3"))
+            {
+                checkpointSetText.SetActive(true);
+                StartCoroutine(CheckpointSet());
+                checkpointThree = true;
+                healthManager.FullHeal();
+                manaManager.FullMana();
+            }
+
+            if (hit.collider.CompareTag("Checkpoint4"))
+            {
+                checkpointSetText.SetActive(true);
+                StartCoroutine(CheckpointSet());
+                checkpointFour = true;
+                healthManager.FullHeal();
+                manaManager.FullMana();
+            }
+
+            if (hit.collider.CompareTag("Checkpoint5"))
+            {
+                checkpointSetText.SetActive(true);
+                StartCoroutine(CheckpointSet());
+                checkpointFive = true;
+                healthManager.FullHeal();
+                manaManager.FullMana();
+            }
         }
     }
 
@@ -306,6 +341,30 @@ public class player : MonoBehaviour
             }
 
             if (hit.collider.CompareTag("Checkpoint1"))
+            {
+                prayText.SetActive(true);
+                Debug.Log("pray text should show");
+            }
+
+            if (hit.collider.CompareTag("Checkpoint2"))
+            {
+                prayText.SetActive(true);
+                Debug.Log("pray text should show");
+            }
+
+            if (hit.collider.CompareTag("Checkpoint3"))
+            {
+                prayText.SetActive(true);
+                Debug.Log("pray text should show");
+            }
+
+            if (hit.collider.CompareTag("Checkpoint4"))
+            {
+                prayText.SetActive(true);
+                Debug.Log("pray text should show");
+            }
+
+            if (hit.collider.CompareTag("Checkpoint5"))
             {
                 prayText.SetActive(true);
                 Debug.Log("pray text should show");
