@@ -27,8 +27,8 @@ public class EnemyController : MonoBehaviour
     [Header("Chasing")]
     [SerializeField] private float chaseRange;
 
-    [Header("Suspicious")] //Time until enemy returns to patrol state
-    [SerializeField] private float suspiciousTime;
+    [Header("Alerted")] //Time until enemy returns to patrol state
+    [SerializeField] private float alertedTime;
     private float timeSinceLastSawPlayer;
 
     [Header("Attack")]
@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         waitCounter = waitAtPoint;
-        timeSinceLastSawPlayer = suspiciousTime;
+        timeSinceLastSawPlayer = alertedTime;
         timeToAttack = attackTime;
     }
 
@@ -105,7 +105,7 @@ public class EnemyController : MonoBehaviour
                     if(timeSinceLastSawPlayer <= 0)
                     {
                         currentState = AIState.Idle;
-                        timeSinceLastSawPlayer = suspiciousTime;
+                        timeSinceLastSawPlayer = alertedTime;
                         agent.isStopped = false;
                     }
                 }
