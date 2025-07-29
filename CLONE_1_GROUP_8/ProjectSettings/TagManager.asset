@@ -24,6 +24,7 @@ TagManager:
   - Checkpoint3
   - Checkpoint4
   - Checkpoint5
+  - KingCoin
   layers:
   - Default
   - TransparentFX

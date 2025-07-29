@@ -120,8 +120,11 @@ public class player : MonoBehaviour
     public bool checkpointTwo = false;
     public bool checkpointThree = false;
     public bool checkpointFour = false;
-    public bool checkpointFive = false; 
+    public bool checkpointFive = false;
 
+    //king coin stuff
+    public kingCoin kingCoin;
+    
     private void OnEnable()
     {
 
@@ -684,6 +687,13 @@ public class player : MonoBehaviour
             Destroy(other.gameObject);
             keyManager.addKey();
             StartCoroutine(KeyPopUp());
+        }
+
+        if(other.tag == "KingCoin")
+        {
+            Destroy(other.gameObject);
+            kingCoin.AddKingCoin();
+            kingCoin.CheckCoinCount();
         }
     }
     public void OnTriggerStay (Collider other)
