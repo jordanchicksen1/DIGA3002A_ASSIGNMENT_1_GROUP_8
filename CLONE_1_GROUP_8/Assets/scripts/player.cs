@@ -122,8 +122,14 @@ public class player : MonoBehaviour
     public bool checkpointFour = false;
     public bool checkpointFive = false;
 
-    //king coin stuff
+    //king coin and queen crystal stuff
     public kingCoin kingCoin;
+    public GameObject kingCoinText;
+
+    public queenCrystal queenCrystal;
+    public GameObject queenCrystalText;
+
+
     
     private void OnEnable()
     {
@@ -694,6 +700,15 @@ public class player : MonoBehaviour
             Destroy(other.gameObject);
             kingCoin.AddKingCoin();
             kingCoin.CheckCoinCount();
+            StartCoroutine(KingCoinAcquired());
+        }
+
+        if(other.tag == "QueenCrystal")
+        {
+            Destroy(other.gameObject);
+            queenCrystal.AddQueenCrystal();
+            queenCrystal.CheckCrystalCount();
+            StartCoroutine(QueenCrystalAcquired());
         }
     }
     public void OnTriggerStay (Collider other)
@@ -1008,5 +1023,23 @@ public class player : MonoBehaviour
         prayText.SetActive(false);
         yield return new WaitForSeconds(2f);
         checkpointSetText.SetActive(false);
+    }
+
+    //got king coin
+    private IEnumerator KingCoinAcquired()
+    {
+        yield return new WaitForSeconds(0f);
+        kingCoinText.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        kingCoinText.SetActive(false);
+    }
+
+    //got queen crystal
+    private IEnumerator QueenCrystalAcquired()
+    {
+        yield return new WaitForSeconds(0f);
+        queenCrystalText.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        queenCrystalText.SetActive(false);
     }
 }

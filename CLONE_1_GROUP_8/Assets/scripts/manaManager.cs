@@ -9,6 +9,18 @@ public class manaManager : MonoBehaviour
     public float maxMana = 100f;
     public float currentMana;
     public Image manaBar;
+    public GameObject manaBarBase;
+    public Image manaBarUpgradeOne;
+    public GameObject manaBarLevelOne;
+    public Image manaBarUpgradeTwo;
+    public GameObject manaBarLevelTwo;
+    public Image manaBarUpgradeThree;
+    public GameObject manaBarLevelThree;
+    public Image manaBarUpgradeFour;
+    public GameObject manaBarLevelFour;
+    public Image manaBarUpgradeFive;
+    public GameObject manaBarLevelFive;
+  
 
 
 
@@ -35,6 +47,11 @@ public class manaManager : MonoBehaviour
     {
         float targetFillAmount = currentMana / maxMana;
         manaBar.fillAmount = targetFillAmount;
+        manaBarUpgradeOne.fillAmount = targetFillAmount;
+        manaBarUpgradeTwo.fillAmount = targetFillAmount;
+        manaBarUpgradeThree.fillAmount = targetFillAmount;
+        manaBarUpgradeFour.fillAmount = targetFillAmount;
+        manaBarUpgradeFive.fillAmount = targetFillAmount;
     }
 
     [ContextMenu("UseFireSpell")]
@@ -82,6 +99,51 @@ public class manaManager : MonoBehaviour
     public void FullMana()
     {
         currentMana = maxMana;
+        updateManaBar();
+    }
+
+    public void GotUpgradeOne()
+    {
+        maxMana = 120f;
+        currentMana = maxMana;
+        manaBarBase.SetActive(false);
+        manaBarLevelOne.SetActive(true);
+        updateManaBar();
+    }
+
+    public void GotUpgradeTwo()
+    {
+        maxMana = 140f;
+        currentMana = maxMana;
+        manaBarLevelOne.SetActive(false);
+        manaBarLevelTwo.SetActive(true);
+        updateManaBar();
+    }
+
+    public void GotUpgradeThree()
+    {
+        maxMana = 160f;
+        currentMana = maxMana;
+        manaBarLevelTwo.SetActive(false);
+        manaBarLevelThree.SetActive(true);
+        updateManaBar();
+    }
+
+    public void GotUpgradeFour()
+    {
+        maxMana = 180f;
+        currentMana = maxMana;
+        manaBarLevelThree.SetActive(false);
+        manaBarLevelFour.SetActive(true);
+        updateManaBar();
+    }
+
+    public void GotUpgradeFive()
+    {
+        maxMana = 200f;
+        currentMana = maxMana;
+        manaBarLevelFour.SetActive(false);
+        manaBarLevelFive.SetActive(true);
         updateManaBar();
     }
 }

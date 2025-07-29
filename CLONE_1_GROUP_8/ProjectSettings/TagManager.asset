@@ -25,6 +25,7 @@ TagManager:
   - Checkpoint4
   - Checkpoint5
   - KingCoin
+  - QueenCrystal
   layers:
   - Default
   - TransparentFX
