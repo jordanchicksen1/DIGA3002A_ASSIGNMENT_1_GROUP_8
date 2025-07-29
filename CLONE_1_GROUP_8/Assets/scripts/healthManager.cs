@@ -60,4 +60,13 @@ public class healthManager : MonoBehaviour
         
 
     }
+
+    [ContextMenu("FullHeal")]
+    public void FullHeal()
+    {
+        currentHealth = maxHealth;
+        updateHealthBar();
+    }
+
+
 }

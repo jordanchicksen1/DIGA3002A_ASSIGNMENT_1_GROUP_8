@@ -107,8 +107,20 @@ public class player : MonoBehaviour
     //interact stuff
     public Transform playerNose;
     public float minRange = 1f;
+    
+    //door stuff
     public GameObject unlockDoorText;
     public GameObject doorLockedText;
+   
+    //checkpoint stuff
+    public GameObject prayText;
+    public GameObject checkpointSetText;
+    //these bools are for when you die, it will check which bool is true and respawn you there 
+    public bool checkpointOne = false;
+    public bool checkpointTwo = false;
+    public bool checkpointThree = false;
+    public bool checkpointFour = false;
+    public bool checkpointFive = false; 
 
     private void OnEnable()
     {
@@ -245,7 +257,8 @@ public class player : MonoBehaviour
     {
         unlockDoorText.SetActive(false);
         doorLockedText.SetActive(false);
-
+        prayText.SetActive(false);
+        checkpointSetText.SetActive(false);
         Ray ray = new Ray(playerNose.position, playerNose.forward);
         RaycastHit hit;
 
@@ -266,6 +279,15 @@ public class player : MonoBehaviour
                     return;
                 }
             }
+
+            if (hit.collider.CompareTag("Checkpoint1"))
+            {
+                checkpointSetText.SetActive(true);
+                StartCoroutine(CheckpointSet());
+                checkpointOne = true;
+                healthManager.FullHeal();
+                manaManager.FullMana();
+            }
          
         }
     }
@@ -282,11 +304,17 @@ public class player : MonoBehaviour
                 unlockDoorText.SetActive(true);
                 Debug.Log("door text should show");
             }
-            
+
+            if (hit.collider.CompareTag("Checkpoint1"))
+            {
+                prayText.SetActive(true);
+                Debug.Log("pray text should show");
+            }
         }
         else
         {
             unlockDoorText.SetActive(false);
+            prayText.SetActive(false);
         }
     }
 
@@ -902,5 +930,14 @@ public class player : MonoBehaviour
         unlockDoorText.SetActive(false);
         yield return new WaitForSeconds(2f);
         doorLockedText.SetActive(false);
+    }
+
+    //checkpoint set text
+    private IEnumerator CheckpointSet()
+    {
+        yield return new WaitForSeconds(0f);
+        prayText.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        checkpointSetText.SetActive(false);
     }
 }

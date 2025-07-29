@@ -9,7 +9,7 @@ public class manaManager : MonoBehaviour
     public float maxMana = 100f;
     public float currentMana;
     public Image manaBar;
-   
+
 
 
 
@@ -21,7 +21,7 @@ public class manaManager : MonoBehaviour
 
     public void Update()
     {
-        
+
     }
 
     public void updateMana(float amount)
@@ -75,5 +75,13 @@ public class manaManager : MonoBehaviour
         currentMana = currentMana + 50f;
         updateManaBar();
 
+    }
+
+    [ContextMenu("FullMana")]
+
+    public void FullMana()
+    {
+        currentMana = maxMana;
+        updateManaBar();
     }
 }
