@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     enum AIState
     {
-        Idle, Patrolling, Chasing
+        Idle, Patrolling, Chasing, Attacking
     }
 
 
@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     private float waitCounter;
 
     [Header("Components")]
+    [SerializeField] Animator animator;
     NavMeshAgent agent;
 
     [Header("AI States")]
@@ -30,6 +31,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float suspiciousTime;
     private float timeSinceLastSawPlayer;
 
+    [Header("Attack")]
+    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private float attackTime = 2f;
+    private float timeToAttack;
     private GameObject player;
 
     private void Start()
@@ -39,6 +44,7 @@ public class EnemyController : MonoBehaviour
 
         waitCounter = waitAtPoint;
         timeSinceLastSawPlayer = suspiciousTime;
+        timeToAttack = attackTime;
     }
 
     private void Update()
@@ -82,6 +88,7 @@ public class EnemyController : MonoBehaviour
                 if (distanceToPlayer <= chaseRange)
                 {
                     currentState = AIState.Chasing;
+                    Debug.Log("Chasing");
                 }
 
                 break;
@@ -101,6 +108,34 @@ public class EnemyController : MonoBehaviour
                         timeSinceLastSawPlayer = suspiciousTime;
                         agent.isStopped = false;
                     }
+                }
+
+                if (distanceToPlayer <= attackRange)
+                {
+                    currentState = AIState.Attacking;
+                    agent.velocity = Vector3.zero;
+                    agent.isStopped = true;
+                }
+
+                break;
+
+            case AIState.Attacking:
+
+                transform.LookAt(player.transform.position, Vector3.up);
+
+                timeToAttack -= Time.deltaTime;
+
+                if(timeToAttack <= 0)
+                {
+                    animator.SetTrigger("attack");
+                    timeToAttack = attackTime;
+                    Debug.Log("Attacking");
+                }
+
+                if(distanceToPlayer > attackRange)
+                {
+                    currentState = AIState.Chasing;
+                    agent.isStopped = false;
                 }
 
                 break;
