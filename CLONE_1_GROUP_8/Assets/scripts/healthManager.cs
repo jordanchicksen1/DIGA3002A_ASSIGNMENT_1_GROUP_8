@@ -23,12 +23,20 @@ public class healthManager : MonoBehaviour
     public GameObject healthBarLevelFive;
     public GameObject gameOverScreen;
 
+    //[SerializeField] private int health;
 
+    [Header("Hit Effect")]
+    [SerializeField] private float blinkDuration;
+    private MeshRenderer meshRenderer;
+    private Color defaultColor;
 
     public void Start()
     {
         currentHealth = maxHealth;
         updateHealthBar();
+
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        defaultColor = meshRenderer.material.color;
     }
 
     public void Update()
@@ -41,6 +49,23 @@ public class healthManager : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if(currentHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
+        StartCoroutine(HitEffect());
+        IEnumerator HitEffect()
+        {
+            meshRenderer.material.color = Color.white * 2f;
+            yield return new WaitForSeconds(blinkDuration);
+            meshRenderer.material.color = defaultColor;
+        }
+    }
     public void updateHealth(float amount)
     {
         currentHealth += amount;
