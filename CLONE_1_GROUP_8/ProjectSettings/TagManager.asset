@@ -29,6 +29,8 @@ TagManager:
   - FireObstacle
   - RockObstacle
   - WaterObstacle
+  - Staff
+  - PotionBag
   layers:
   - Default
   - TransparentFX

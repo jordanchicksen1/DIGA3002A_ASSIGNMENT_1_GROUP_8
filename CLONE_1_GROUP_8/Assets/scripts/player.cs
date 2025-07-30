@@ -92,6 +92,7 @@ public class player : MonoBehaviour
     public GameObject windTextPopUp;
     public GameObject unknownSpell4;
     public GameObject windSpellUI;
+    public bool isJumping = false;
 
     //potion stuff
     public potionManager potionManager;
@@ -130,8 +131,16 @@ public class player : MonoBehaviour
     public queenCrystal queenCrystal;
     public GameObject queenCrystalText;
 
+    //staff
+    public GameObject spellFrame;
+    public GameObject staff;
+    public GameObject staffText;
 
-    
+    //potionBagStuff
+    public GameObject potionFrame;
+    public GameObject potionText;
+
+
     private void OnEnable()
     {
 
@@ -426,10 +435,12 @@ public class player : MonoBehaviour
         }
 
         //wind spell
-        if(manaManager.currentMana > 4.99f && windSpellEquipped == true)
+        if(manaManager.currentMana > 4.99f && windSpellEquipped == true && isJumping == false)
         {
             _velocity.y = Mathf.Sqrt(windJumpHeight * -2f * gravity);
             manaManager.UseWindSpell();
+            isJumping = true;
+            StartCoroutine(CapJump());
         }
     }
 
@@ -721,6 +732,21 @@ public class player : MonoBehaviour
         if(other.tag == "WaterObstacle" && isUsingWaterShield == true)
         {
             Destroy(other.gameObject);
+        }
+
+        if(other.tag == "Staff")
+        {
+            Destroy(other.gameObject);
+            spellFrame.SetActive(true);
+            staff.SetActive(true);
+            StartCoroutine(StaffAcquired());    
+        }
+
+        if(other.tag == "PotionBag")
+        {
+            Destroy(other.gameObject);
+            potionFrame.SetActive(true);
+            StartCoroutine(PotionBagAcquired());
         }
     }
     public void OnTriggerStay (Collider other)
@@ -1059,5 +1085,30 @@ public class player : MonoBehaviour
         queenCrystalText.SetActive(true);
         yield return new WaitForSeconds(2f);
         queenCrystalText.SetActive(false);
+    }
+
+    //got staff
+    private IEnumerator StaffAcquired()
+    {
+        yield return new WaitForSeconds(0f);
+        staffText.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        staffText.SetActive(false);
+    }
+
+    //got potion bag
+    private IEnumerator PotionBagAcquired()
+    {
+        yield return new WaitForSeconds(0f);
+        potionText.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        potionText.SetActive(false);
+    }
+
+    //double jump cap
+    private IEnumerator CapJump()
+    {
+        yield return new WaitForSeconds(2f);
+        isJumping = false;
     }
 }
