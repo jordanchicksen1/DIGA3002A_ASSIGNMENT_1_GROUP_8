@@ -64,6 +64,7 @@ public class player : MonoBehaviour
     public GameObject fireTextPopUp;
     public GameObject unknownSpell1;
     public GameObject fireSpellUI;
+    public GameObject fireEmblem;
 
     //water
     public GameObject waterShield;
@@ -74,6 +75,7 @@ public class player : MonoBehaviour
     public GameObject unknownSpell2;
     public GameObject waterSpellUI;
     public bool isUsingWaterShield = false;
+    public GameObject waterEmblem;
 
     //rock
     public GameObject rockProjectile;
@@ -84,6 +86,7 @@ public class player : MonoBehaviour
     public GameObject rockTextPopUp;
     public GameObject unknownSpell3;
     public GameObject rockSpellUI;
+    public GameObject rockEmblem;
 
     //wind
     public bool windSpellEquipped = false;
@@ -93,6 +96,7 @@ public class player : MonoBehaviour
     public GameObject unknownSpell4;
     public GameObject windSpellUI;
     public bool isJumping = false;
+    public GameObject windEmblem;
 
     //potion stuff
     public potionManager potionManager;
@@ -140,6 +144,9 @@ public class player : MonoBehaviour
     public GameObject potionFrame;
     public GameObject potionText;
 
+    //boss door
+    public spellCounter spellCounter;
+    public GameObject notStrongEnoughText;
 
     private void OnEnable()
     {
@@ -343,6 +350,19 @@ public class player : MonoBehaviour
                 healthManager.FullHeal();
                 manaManager.FullMana();
             }
+
+            if (hit.collider.CompareTag("BossDoor"))
+            {
+                if(spellCounter.spellCount < 4)
+                {
+                    StartCoroutine(NotStrongEnough());
+                }
+
+                if(spellCounter.spellCount == 4)
+                {
+                    Destroy(hit.collider.gameObject);
+                }
+            }
         }
     }
 
@@ -387,6 +407,12 @@ public class player : MonoBehaviour
             {
                 prayText.SetActive(true);
                 Debug.Log("pray text should show");
+            }
+
+            if (hit.collider.CompareTag("BossDoor"))
+            {
+                unlockDoorText.SetActive(true);
+                Debug.Log("door text should show");
             }
         }
         else
@@ -618,6 +644,8 @@ public class player : MonoBehaviour
 
             Destroy(other.gameObject);
             StartCoroutine(FireSpellPopUp());
+            fireEmblem.SetActive(true);
+            spellCounter.AddSpell();
         }
 
         if (other.tag == "WaterSpell")
@@ -645,6 +673,8 @@ public class player : MonoBehaviour
 
             Destroy(other.gameObject);
             StartCoroutine(WaterSpellPopUp());
+            waterEmblem.SetActive(true);
+            spellCounter.AddSpell();
         }
 
         if(other.tag == "WindSpell")
@@ -672,6 +702,8 @@ public class player : MonoBehaviour
 
             Destroy(other.gameObject);
             StartCoroutine(WindSpellPopUp());
+            windEmblem.SetActive(true);
+            spellCounter.AddSpell();
         }
 
         if(other.tag == "RockSpell")
@@ -699,6 +731,8 @@ public class player : MonoBehaviour
 
             Destroy(other.gameObject);
             StartCoroutine(RockSpellPopUp());
+            rockEmblem.SetActive(true); 
+            spellCounter.AddSpell();
         }
 
         if (other.tag == "Key")
@@ -1110,5 +1144,15 @@ public class player : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         isJumping = false;
+    }
+
+    //not strong enough
+
+    private IEnumerator NotStrongEnough()
+    {
+        yield return new WaitForSeconds(0f);
+        notStrongEnoughText.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        notStrongEnoughText.SetActive(false);
     }
 }

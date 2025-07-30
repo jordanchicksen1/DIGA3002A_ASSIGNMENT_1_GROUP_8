@@ -41,7 +41,7 @@ public class healthManager : MonoBehaviour
 
     public void Update()
     {
-        if (currentHealth == 0)
+        if (currentHealth <= 0)
         {
             gameOverScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
