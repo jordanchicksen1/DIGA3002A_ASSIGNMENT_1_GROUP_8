@@ -73,6 +73,7 @@ public class player : MonoBehaviour
     public GameObject waterTextPopUp;
     public GameObject unknownSpell2;
     public GameObject waterSpellUI;
+    public bool isUsingWaterShield = false;
 
     //rock
     public GameObject rockProjectile;
@@ -403,6 +404,7 @@ public class player : MonoBehaviour
         {
             StartCoroutine(WaterShield());
             manaManager.UseWaterSpell();
+            isUsingWaterShield = true;
             
         }
 
@@ -710,6 +712,16 @@ public class player : MonoBehaviour
             queenCrystal.CheckCrystalCount();
             StartCoroutine(QueenCrystalAcquired());
         }
+
+        if(other.tag == "WaterObstacle" && isUsingWaterShield == false)
+        {
+            healthManager.FireWallHit();
+        }
+
+        if(other.tag == "WaterObstacle" && isUsingWaterShield == true)
+        {
+            Destroy(other.gameObject);
+        }
     }
     public void OnTriggerStay (Collider other)
     {
@@ -717,6 +729,11 @@ public class player : MonoBehaviour
         {
             playerCamHolder.SetActive(false);
             Room1Cam.SetActive(true);
+        }
+
+        if(other.tag == "WaterObstacle")
+        {
+            healthManager.FireWallHit();
         }
     }
 
@@ -1005,6 +1022,7 @@ public class player : MonoBehaviour
         waterShield.SetActive(true);
         yield return new WaitForSeconds(5f);
         waterShield.SetActive(false);
+        isUsingWaterShield = false;
     }
 
     //door locked text

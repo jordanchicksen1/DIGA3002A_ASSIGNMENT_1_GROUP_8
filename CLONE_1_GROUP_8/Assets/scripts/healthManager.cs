@@ -93,6 +93,12 @@ public class healthManager : MonoBehaviour
 
     }
 
+    public void FireWallHit()
+    {
+        currentHealth = currentHealth - 0.5f;
+        updateHealthBar();
+    }
+
     [ContextMenu("PlayerHeal")]
     public void PlayerHeal()
     {
