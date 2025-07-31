@@ -311,6 +311,10 @@ public class player : MonoBehaviour
                 checkpointSetText.SetActive(true);
                 StartCoroutine(CheckpointSet());
                 checkpointOne = true;
+                checkpointTwo = false;
+                checkpointThree = false;
+                checkpointFour = false;
+                checkpointFive = false;
                 healthManager.FullHeal();
                 manaManager.FullMana();
             }
@@ -319,7 +323,11 @@ public class player : MonoBehaviour
             {
                 checkpointSetText.SetActive(true);
                 StartCoroutine(CheckpointSet());
+                checkpointOne = false;
                 checkpointTwo = true;
+                checkpointThree = false;
+                checkpointFour = false;
+                checkpointFive = false;
                 healthManager.FullHeal();
                 manaManager.FullMana();
             }
@@ -328,7 +336,11 @@ public class player : MonoBehaviour
             {
                 checkpointSetText.SetActive(true);
                 StartCoroutine(CheckpointSet());
+                checkpointOne = false;
+                checkpointTwo = false;
                 checkpointThree = true;
+                checkpointFour = false;
+                checkpointFive = false;
                 healthManager.FullHeal();
                 manaManager.FullMana();
             }
@@ -337,7 +349,11 @@ public class player : MonoBehaviour
             {
                 checkpointSetText.SetActive(true);
                 StartCoroutine(CheckpointSet());
+                checkpointOne = false;
+                checkpointTwo = false;
+                checkpointThree = false;
                 checkpointFour = true;
+                checkpointFive = false;
                 healthManager.FullHeal();
                 manaManager.FullMana();
             }
@@ -346,6 +362,10 @@ public class player : MonoBehaviour
             {
                 checkpointSetText.SetActive(true);
                 StartCoroutine(CheckpointSet());
+                checkpointOne = false;
+                checkpointTwo = false;
+                checkpointThree = false;
+                checkpointFour = false;
                 checkpointFive = true;
                 healthManager.FullHeal();
                 manaManager.FullMana();
