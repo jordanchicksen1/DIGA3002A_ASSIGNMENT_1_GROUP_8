@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class pauseButtons : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class pauseButtons : MonoBehaviour
     public CharacterController playerCharacterController;
     public GameObject playerObject;
     public GameObject gameoverScreen;
+    public GameObject playerCamHolder;
 
     //checkpoints
     public GameObject checkpoint1;
@@ -40,7 +42,7 @@ public class pauseButtons : MonoBehaviour
             Debug.Log("should respawn");
         }
 
-        if (player.checkpointTwo == true)
+        else if (player.checkpointTwo == true)
         {
             playerObject.transform.position = checkpoint2.transform.position;
             playerCharacterController.enabled = false;
@@ -52,7 +54,7 @@ public class pauseButtons : MonoBehaviour
             Debug.Log("should respawn");
         }
 
-        if (player.checkpointThree == true)
+        else if (player.checkpointThree == true)
         {
             playerObject.transform.position = checkpoint3.transform.position;
             playerCharacterController.enabled = false;
@@ -64,7 +66,7 @@ public class pauseButtons : MonoBehaviour
             Debug.Log("should respawn");
         }
 
-        if (player.checkpointFour == true)
+        else if (player.checkpointFour == true)
         {
             playerObject.transform.position = checkpoint4.transform.position;
             playerCharacterController.enabled = false;
@@ -74,6 +76,10 @@ public class pauseButtons : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             Debug.Log("should respawn");
+        }
+        else
+        {
+            SceneManager.LoadScene("GAME");
         }
     }
 
@@ -87,5 +93,6 @@ public class pauseButtons : MonoBehaviour
         yield return new WaitForSeconds(0f);
         gameoverScreen.SetActive(false);
         playerCharacterController.enabled=true;
+        playerCamHolder.SetActive(true);
     }
 }

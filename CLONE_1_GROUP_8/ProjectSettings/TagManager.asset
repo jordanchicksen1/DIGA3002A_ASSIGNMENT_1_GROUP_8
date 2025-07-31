@@ -32,6 +32,7 @@ TagManager:
   - Staff
   - PotionBag
   - BossDoor
+  - KillBox
   layers:
   - Default
   - TransparentFX
