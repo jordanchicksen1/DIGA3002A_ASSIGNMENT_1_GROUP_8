@@ -43,6 +43,22 @@ public class player : MonoBehaviour
     //camera stuff
     public GameObject playerCamHolder;
     public GameObject Room1Cam;
+    public GameObject Room2Cam;
+    public GameObject Room3Cam;
+    public GameObject Room4Cam;
+    public GameObject Room5Cam;
+    public GameObject Room6Cam;
+    public GameObject Room7Cam;
+    public GameObject Room8Cam;
+    public GameObject Room9Cam;
+    public GameObject Room10Cam;
+    public GameObject Room11Cam;
+    public GameObject Room12Cam;
+    public GameObject Room13Cam;
+    public GameObject Room14Cam;
+    public GameObject Room15Cam;
+    public GameObject Room16Cam;
+    public GameObject Room17Cam;
 
     //pause stuff
     public bool isPaused = false;
@@ -808,10 +824,379 @@ public class player : MonoBehaviour
         if(other.tag == "Room1")
         {
             playerCamHolder.SetActive(false);
-            Room1Cam.SetActive(true);
+            Room1Cam.SetActive(true); //this one
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+
         }
 
-        if(other.tag == "WaterObstacle")
+        if (other.tag == "Room2")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(true); //this one
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if(other.tag == "Room3")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false); 
+            Room3Cam.SetActive(true);//this one
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room4")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(true);//this one
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room5")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);//this one
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room6")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(true); //this one
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room7")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false); 
+            Room7Cam.SetActive(true); //this one
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room8")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false); 
+            Room8Cam.SetActive(true); //this one
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room9")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false); 
+            Room9Cam.SetActive(true); //this one
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room10")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false); 
+            Room10Cam.SetActive(true); //this one
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room11")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false); 
+            Room11Cam.SetActive(true); //this one
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room12")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false); 
+            Room12Cam.SetActive(true); //this one
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room13")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false); 
+            Room13Cam.SetActive(true); //this one
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room14")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false); 
+            Room14Cam.SetActive(true); //this one
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room15")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false); 
+            Room15Cam.SetActive(true); //this one
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room16")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false); 
+            Room16Cam.SetActive(true); //this one
+            Room17Cam.SetActive(false);
+        }
+
+        if (other.tag == "Room17")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false); 
+            Room17Cam.SetActive(true); //this one
+        }
+
+        if (other.tag == "WaterObstacle")
         {
             healthManager.FireWallHit();
         }
@@ -819,10 +1204,26 @@ public class player : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Room1")
+        if (other.tag == "Room1" || other.tag == "Room2" || other.tag == "Room3" || other.tag == "Room4" || other.tag == "Room5" || other.tag == "Room6" || other.tag == "Room7" || other.tag == "Room8" || other.tag == "Room9" || other.tag == "Room10" || other.tag == "Room11" || other.tag == "Room12" || other.tag == "Room13" || other.tag == "Room14" || other.tag == "Room15" || other.tag == "Room16" || other.tag == "Room17")
         {
-            playerCamHolder.SetActive(true);
+            playerCamHolder.SetActive(true); //this one
             Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            Room17Cam.SetActive(false);
         }
     }
 
