@@ -917,7 +917,7 @@ public class player : MonoBehaviour
             Room2Cam.SetActive(false);
             Room3Cam.SetActive(false);
             Room4Cam.SetActive(false);
-            Room5Cam.SetActive(false);//this one
+            Room5Cam.SetActive(true);//this one
             Room6Cam.SetActive(false);
             Room7Cam.SetActive(false);
             Room8Cam.SetActive(false);
