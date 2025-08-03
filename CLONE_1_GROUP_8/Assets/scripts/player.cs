@@ -58,7 +58,6 @@ public class player : MonoBehaviour
     public GameObject Room14Cam;
     public GameObject Room15Cam;
     public GameObject Room16Cam;
-    public GameObject Room17Cam;
 
     //pause stuff
     public bool isPaused = false;
@@ -840,7 +839,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
 
         }
 
@@ -863,7 +862,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if(other.tag == "Room3")
@@ -885,7 +884,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room4")
@@ -907,7 +906,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room5")
@@ -929,7 +928,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room6")
@@ -951,7 +950,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room7")
@@ -973,7 +972,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room8")
@@ -995,7 +994,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room9")
@@ -1017,7 +1016,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room10")
@@ -1039,7 +1038,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room11")
@@ -1061,7 +1060,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
             Debug.Log("should turn on camera");
         }
 
@@ -1084,7 +1083,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room13")
@@ -1106,7 +1105,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room14")
@@ -1128,7 +1127,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(true); //this one
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room15")
@@ -1150,7 +1149,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false); 
             Room15Cam.SetActive(true); //this one
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
 
         if (other.tag == "Room16")
@@ -1172,30 +1171,11 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false); 
             Room16Cam.SetActive(true); //this one
-            Room17Cam.SetActive(false);
+            
         }
 
-        if (other.tag == "Room17")
-        {
-            playerCamHolder.SetActive(false);
-            Room1Cam.SetActive(false);
-            Room2Cam.SetActive(false);
-            Room3Cam.SetActive(false);
-            Room4Cam.SetActive(false);
-            Room5Cam.SetActive(false);
-            Room6Cam.SetActive(false);
-            Room7Cam.SetActive(false);
-            Room8Cam.SetActive(false);
-            Room9Cam.SetActive(false);
-            Room10Cam.SetActive(false);
-            Room11Cam.SetActive(false);
-            Room12Cam.SetActive(false);
-            Room13Cam.SetActive(false);
-            Room14Cam.SetActive(false);
-            Room15Cam.SetActive(false);
-            Room16Cam.SetActive(false); 
-            Room17Cam.SetActive(true); //this one
-        }
+  
+            
 
         if (other.tag == "WaterObstacle")
         {
@@ -1205,7 +1185,7 @@ public class player : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Room1" || other.tag == "Room2" || other.tag == "Room3" || other.tag == "Room4" || other.tag == "Room5" || other.tag == "Room6" || other.tag == "Room7" || other.tag == "Room8" || other.tag == "Room9" || other.tag == "Room10" || other.tag == "Room11" || other.tag == "Room12" || other.tag == "Room13" || other.tag == "Room14" || other.tag == "Room15" || other.tag == "Room16" || other.tag == "Room17")
+        if (other.tag == "Room1" || other.tag == "Room2" || other.tag == "Room3" || other.tag == "Room4" || other.tag == "Room5" || other.tag == "Room6" || other.tag == "Room7" || other.tag == "Room8" || other.tag == "Room9" || other.tag == "Room10" || other.tag == "Room11" || other.tag == "Room12" || other.tag == "Room13" || other.tag == "Room14" || other.tag == "Room15" || other.tag == "Room16" )
         {
             playerCamHolder.SetActive(true); //this one
             Room1Cam.SetActive(false);
@@ -1224,7 +1204,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            Room17Cam.SetActive(false);
+            
         }
     }
 

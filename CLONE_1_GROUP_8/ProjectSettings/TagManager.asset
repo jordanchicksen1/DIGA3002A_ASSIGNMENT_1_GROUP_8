@@ -48,7 +48,6 @@ TagManager:
   - Room14
   - Room15
   - Room16
-  - Room17
   layers:
   - Default
   - TransparentFX
