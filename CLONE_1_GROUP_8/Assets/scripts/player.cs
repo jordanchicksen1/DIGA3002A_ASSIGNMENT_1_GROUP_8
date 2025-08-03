@@ -1062,6 +1062,7 @@ public class player : MonoBehaviour
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
             Room17Cam.SetActive(false);
+            Debug.Log("should turn on camera");
         }
 
         if (other.tag == "Room12")
