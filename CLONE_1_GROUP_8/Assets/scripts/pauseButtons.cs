@@ -21,6 +21,8 @@ public class pauseButtons : MonoBehaviour
     public healthManager healthManager;
     public manaManager manaManager;
 
+    //tutorial letter
+    public GameObject tutorialNote;
     public void ExitButton()
     {
         player.Pause();
@@ -81,6 +83,14 @@ public class pauseButtons : MonoBehaviour
         {
             SceneManager.LoadScene("GAME");
         }
+    }
+
+    public void ExitLetter()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
+        tutorialNote.SetActive(false);
+        player.isPaused = false;
     }
 
     public void QuitGame()
