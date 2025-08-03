@@ -1666,6 +1666,7 @@ public class player : MonoBehaviour
     private IEnumerator StaffAcquired()
     {
         yield return new WaitForSeconds(0f);
+        potionText.SetActive(false);
         staffText.SetActive(true);
         yield return new WaitForSeconds(2f);
         staffText.SetActive(false);
@@ -1675,6 +1676,7 @@ public class player : MonoBehaviour
     private IEnumerator PotionBagAcquired()
     {
         yield return new WaitForSeconds(0f);
+        staffText.SetActive(false);
         potionText.SetActive(true);
         yield return new WaitForSeconds(2f);
         potionText.SetActive(false);
