@@ -186,6 +186,9 @@ public class player : MonoBehaviour
     public GameObject killbox2RespawnPoint;
     public GameObject killbox3RespawnPoint;
     public GameObject killbox4RespawnPoint;
+
+    //shooting enemy stuff
+    public enemyLookAt enemyLookAt;
     private void OnEnable()
     {
 
@@ -886,10 +889,16 @@ public class player : MonoBehaviour
             StartCoroutine(KillBox4());
 
         }
+
+        if(other.tag == "EnemyBullet")
+        {
+            healthManager.PlayerHit();
+            Destroy(other.gameObject);
+        }
     }
-    public void OnTriggerStay (Collider other)
+    public void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Room1")
+        if (other.tag == "Room1")
         {
             playerCamHolder.SetActive(false);
             Room1Cam.SetActive(true); //this one
@@ -938,11 +947,11 @@ public class player : MonoBehaviour
             tutorial3Cam.SetActive(false);
         }
 
-        if(other.tag == "Room3")
+        if (other.tag == "Room3")
         {
             playerCamHolder.SetActive(false);
             Room1Cam.SetActive(false);
-            Room2Cam.SetActive(false); 
+            Room2Cam.SetActive(false);
             Room3Cam.SetActive(true);//this one
             Room4Cam.SetActive(false);
             Room5Cam.SetActive(false);
@@ -1042,7 +1051,7 @@ public class player : MonoBehaviour
             Room3Cam.SetActive(false);
             Room4Cam.SetActive(false);
             Room5Cam.SetActive(false);
-            Room6Cam.SetActive(false); 
+            Room6Cam.SetActive(false);
             Room7Cam.SetActive(true); //this one
             Room8Cam.SetActive(false);
             Room9Cam.SetActive(false);
@@ -1067,7 +1076,7 @@ public class player : MonoBehaviour
             Room4Cam.SetActive(false);
             Room5Cam.SetActive(false);
             Room6Cam.SetActive(false);
-            Room7Cam.SetActive(false); 
+            Room7Cam.SetActive(false);
             Room8Cam.SetActive(true); //this one
             Room9Cam.SetActive(false);
             Room10Cam.SetActive(false);
@@ -1092,7 +1101,7 @@ public class player : MonoBehaviour
             Room5Cam.SetActive(false);
             Room6Cam.SetActive(false);
             Room7Cam.SetActive(false);
-            Room8Cam.SetActive(false); 
+            Room8Cam.SetActive(false);
             Room9Cam.SetActive(true); //this one
             Room10Cam.SetActive(false);
             Room11Cam.SetActive(false);
@@ -1117,7 +1126,7 @@ public class player : MonoBehaviour
             Room6Cam.SetActive(false);
             Room7Cam.SetActive(false);
             Room8Cam.SetActive(false);
-            Room9Cam.SetActive(false); 
+            Room9Cam.SetActive(false);
             Room10Cam.SetActive(true); //this one
             Room11Cam.SetActive(false);
             Room12Cam.SetActive(false);
@@ -1142,7 +1151,7 @@ public class player : MonoBehaviour
             Room7Cam.SetActive(false);
             Room8Cam.SetActive(false);
             Room9Cam.SetActive(false);
-            Room10Cam.SetActive(false); 
+            Room10Cam.SetActive(false);
             Room11Cam.SetActive(true); //this one
             Room12Cam.SetActive(false);
             Room13Cam.SetActive(false);
@@ -1168,7 +1177,7 @@ public class player : MonoBehaviour
             Room8Cam.SetActive(false);
             Room9Cam.SetActive(false);
             Room10Cam.SetActive(false);
-            Room11Cam.SetActive(false); 
+            Room11Cam.SetActive(false);
             Room12Cam.SetActive(true); //this one
             Room13Cam.SetActive(false);
             Room14Cam.SetActive(false);
@@ -1193,7 +1202,7 @@ public class player : MonoBehaviour
             Room9Cam.SetActive(false);
             Room10Cam.SetActive(false);
             Room11Cam.SetActive(false);
-            Room12Cam.SetActive(false); 
+            Room12Cam.SetActive(false);
             Room13Cam.SetActive(true); //this one
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
@@ -1218,7 +1227,7 @@ public class player : MonoBehaviour
             Room10Cam.SetActive(false);
             Room11Cam.SetActive(false);
             Room12Cam.SetActive(false);
-            Room13Cam.SetActive(false); 
+            Room13Cam.SetActive(false);
             Room14Cam.SetActive(true); //this one
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
@@ -1243,7 +1252,7 @@ public class player : MonoBehaviour
             Room11Cam.SetActive(false);
             Room12Cam.SetActive(false);
             Room13Cam.SetActive(false);
-            Room14Cam.SetActive(false); 
+            Room14Cam.SetActive(false);
             Room15Cam.SetActive(true); //this one
             Room16Cam.SetActive(false);
             tutorial1Cam.SetActive(false);
@@ -1268,7 +1277,7 @@ public class player : MonoBehaviour
             Room12Cam.SetActive(false);
             Room13Cam.SetActive(false);
             Room14Cam.SetActive(false);
-            Room15Cam.SetActive(false); 
+            Room15Cam.SetActive(false);
             Room16Cam.SetActive(true); //this one
             tutorial1Cam.SetActive(false);
             tutorial2Cam.SetActive(false);
@@ -1318,7 +1327,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            tutorial1Cam.SetActive(false); 
+            tutorial1Cam.SetActive(false);
             tutorial2Cam.SetActive(true); //this one
             tutorial3Cam.SetActive(false);
         }
@@ -1342,7 +1351,7 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            tutorial1Cam.SetActive(false); 
+            tutorial1Cam.SetActive(false);
             tutorial2Cam.SetActive(false);
             tutorial3Cam.SetActive(true); //this one
         }
@@ -1353,6 +1362,16 @@ public class player : MonoBehaviour
             healthManager.FireWallHit();
         }
 
+        if (other.CompareTag("ShootingEnemyRange"))
+        {
+            enemyLookAt enemy = other.GetComponentInParent<enemyLookAt>(); 
+
+            if (enemy != null)
+            {
+                enemy.isInShootingRange = true;
+            }
+
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -1379,6 +1398,17 @@ public class player : MonoBehaviour
             tutorial1Cam.SetActive(false);
             tutorial2Cam.SetActive(false);
             tutorial3Cam.SetActive(false);
+        }
+
+        if (other.CompareTag("ShootingEnemyRange"))
+        {
+            enemyLookAt enemy = other.GetComponentInParent<enemyLookAt>(); 
+
+            if (enemy != null)
+            {
+                enemy.isInShootingRange = false;
+            }
+
         }
     }
 

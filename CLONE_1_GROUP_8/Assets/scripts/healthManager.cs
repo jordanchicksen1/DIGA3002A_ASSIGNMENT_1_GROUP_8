@@ -104,7 +104,7 @@ public class healthManager : MonoBehaviour
     [ContextMenu("PlayerHeal")]
     public void PlayerHeal()
     {
-        currentHealth = currentHealth + 25f;
+        currentHealth = currentHealth + 50f;
         updateHealthBar();
         
 

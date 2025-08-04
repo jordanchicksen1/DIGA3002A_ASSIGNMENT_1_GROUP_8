@@ -89,7 +89,7 @@ public class manaManager : MonoBehaviour
     [ContextMenu("DrankManaPotion")]
     public void DrankManaPotion()
     {
-        currentMana = currentMana + 25f;
+        currentMana = currentMana + 50f;
         updateManaBar();
 
     }
