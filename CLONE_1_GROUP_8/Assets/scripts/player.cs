@@ -183,6 +183,9 @@ public class player : MonoBehaviour
 
     //killbox stuff
     public GameObject killboxRespawnPoint;
+    public GameObject killbox2RespawnPoint;
+    public GameObject killbox3RespawnPoint;
+    public GameObject killbox4RespawnPoint;
     private void OnEnable()
     {
 
@@ -860,6 +863,27 @@ public class player : MonoBehaviour
         {
             healthManager.PlayerHit();
             StartCoroutine(KillBox());
+
+        }
+
+        if (other.tag == "KillBox2")
+        {
+            healthManager.PlayerHit();
+            StartCoroutine(KillBox2());
+
+        }
+
+        if (other.tag == "KillBox3")
+        {
+            healthManager.PlayerHit();
+            StartCoroutine(KillBox3());
+
+        }
+
+        if (other.tag == "KillBox4")
+        {
+            healthManager.PlayerHit();
+            StartCoroutine(KillBox4());
 
         }
     }
@@ -1751,5 +1775,35 @@ public class player : MonoBehaviour
         playerCamHolder.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         _characterController.enabled=true;
+    }
+
+    public IEnumerator KillBox2()
+    {
+        yield return new WaitForSeconds(0f);
+        _characterController.enabled = false;
+        transform.position = killbox2RespawnPoint.transform.position;
+        playerCamHolder.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        _characterController.enabled = true;
+    }
+
+    public IEnumerator KillBox3()
+    {
+        yield return new WaitForSeconds(0f);
+        _characterController.enabled = false;
+        transform.position = killbox3RespawnPoint.transform.position;
+        playerCamHolder.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        _characterController.enabled = true;
+    }
+
+    public IEnumerator KillBox4()
+    {
+        yield return new WaitForSeconds(0f);
+        _characterController.enabled = false;
+        transform.position = killbox4RespawnPoint.transform.position;
+        playerCamHolder.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        _characterController.enabled = true;
     }
 }
