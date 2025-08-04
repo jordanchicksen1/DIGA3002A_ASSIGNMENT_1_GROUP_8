@@ -59,6 +59,24 @@ public class player : MonoBehaviour
     public GameObject Room15Cam;
     public GameObject Room16Cam;
 
+    public GameObject tutorial1Cam;
+    public GameObject tutorial2Cam;
+    public GameObject tutorial3Cam;
+
+    //tutorial note
+    public GameObject tutorialNote;
+    public bool hasPotionBag = false;
+    public bool hasStaff = false;
+    public GameObject teleportPoint;
+    public GameObject teleportScreen;
+    public GameObject tutorialLevel;
+
+    public GameObject moveText;
+    public GameObject aimText;
+    public GameObject jumpText;
+    public GameObject dashText;
+    public GameObject pauseText;
+
     //pause stuff
     public bool isPaused = false;
     public GameObject pauseScreen;
@@ -220,6 +238,7 @@ public class player : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        StartCoroutine(StartText());
     }
 
     public void Update()
@@ -809,6 +828,7 @@ public class player : MonoBehaviour
             spellFrame.SetActive(true);
             staff.SetActive(true);
             StartCoroutine(StaffAcquired());    
+            hasStaff = true;
         }
 
         if(other.tag == "PotionBag")
@@ -816,6 +836,21 @@ public class player : MonoBehaviour
             Destroy(other.gameObject);
             potionFrame.SetActive(true);
             StartCoroutine(PotionBagAcquired());
+            hasPotionBag = true;
+        }
+
+        if(other.tag == "Note")
+        {
+            Destroy(other.gameObject);
+            isPaused = true;
+            tutorialNote.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if(other.tag == "Teleporter" && hasPotionBag == true && hasStaff == true)
+        {
+            StartCoroutine(Teleport());
         }
     }
     public void OnTriggerStay (Collider other)
@@ -839,7 +874,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
 
         }
 
@@ -862,7 +899,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if(other.tag == "Room3")
@@ -884,7 +923,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room4")
@@ -906,7 +947,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room5")
@@ -928,7 +971,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room6")
@@ -950,7 +995,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room7")
@@ -972,7 +1019,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room8")
@@ -994,7 +1043,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room9")
@@ -1016,7 +1067,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room10")
@@ -1038,7 +1091,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room11")
@@ -1060,7 +1115,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
             Debug.Log("should turn on camera");
         }
 
@@ -1083,7 +1140,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room13")
@@ -1105,7 +1164,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room14")
@@ -1127,7 +1188,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(true); //this one
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room15")
@@ -1149,7 +1212,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false); 
             Room15Cam.SetActive(true); //this one
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
         if (other.tag == "Room16")
@@ -1171,11 +1236,83 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false); 
             Room16Cam.SetActive(true); //this one
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
 
-  
-            
+        if (other.tag == "Tutorial1")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            tutorial1Cam.SetActive(true); //this one
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
+        }
+
+        if (other.tag == "Tutorial2")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            tutorial1Cam.SetActive(false); 
+            tutorial2Cam.SetActive(true); //this one
+            tutorial3Cam.SetActive(false);
+        }
+
+        if (other.tag == "Tutorial3")
+        {
+            playerCamHolder.SetActive(false);
+            Room1Cam.SetActive(false);
+            Room2Cam.SetActive(false);
+            Room3Cam.SetActive(false);
+            Room4Cam.SetActive(false);
+            Room5Cam.SetActive(false);
+            Room6Cam.SetActive(false);
+            Room7Cam.SetActive(false);
+            Room8Cam.SetActive(false);
+            Room9Cam.SetActive(false);
+            Room10Cam.SetActive(false);
+            Room11Cam.SetActive(false);
+            Room12Cam.SetActive(false);
+            Room13Cam.SetActive(false);
+            Room14Cam.SetActive(false);
+            Room15Cam.SetActive(false);
+            Room16Cam.SetActive(false);
+            tutorial1Cam.SetActive(false); 
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(true); //this one
+        }
+
 
         if (other.tag == "WaterObstacle")
         {
@@ -1185,7 +1322,7 @@ public class player : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Room1" || other.tag == "Room2" || other.tag == "Room3" || other.tag == "Room4" || other.tag == "Room5" || other.tag == "Room6" || other.tag == "Room7" || other.tag == "Room8" || other.tag == "Room9" || other.tag == "Room10" || other.tag == "Room11" || other.tag == "Room12" || other.tag == "Room13" || other.tag == "Room14" || other.tag == "Room15" || other.tag == "Room16" )
+        if (other.tag == "Room1" || other.tag == "Room2" || other.tag == "Room3" || other.tag == "Room4" || other.tag == "Room5" || other.tag == "Room6" || other.tag == "Room7" || other.tag == "Room8" || other.tag == "Room9" || other.tag == "Room10" || other.tag == "Room11" || other.tag == "Room12" || other.tag == "Room13" || other.tag == "Room14" || other.tag == "Room15" || other.tag == "Room16" || other.tag == "Tutorial1" || other.tag == "Tutorial2" || other.tag == "Tutorial3")
         {
             playerCamHolder.SetActive(true); //this one
             Room1Cam.SetActive(false);
@@ -1204,7 +1341,9 @@ public class player : MonoBehaviour
             Room14Cam.SetActive(false);
             Room15Cam.SetActive(false);
             Room16Cam.SetActive(false);
-            
+            tutorial1Cam.SetActive(false);
+            tutorial2Cam.SetActive(false);
+            tutorial3Cam.SetActive(false);
         }
     }
 
@@ -1527,6 +1666,7 @@ public class player : MonoBehaviour
     private IEnumerator StaffAcquired()
     {
         yield return new WaitForSeconds(0f);
+        potionText.SetActive(false);
         staffText.SetActive(true);
         yield return new WaitForSeconds(2f);
         staffText.SetActive(false);
@@ -1536,6 +1676,7 @@ public class player : MonoBehaviour
     private IEnumerator PotionBagAcquired()
     {
         yield return new WaitForSeconds(0f);
+        staffText.SetActive(false);
         potionText.SetActive(true);
         yield return new WaitForSeconds(2f);
         potionText.SetActive(false);
@@ -1556,5 +1697,38 @@ public class player : MonoBehaviour
         notStrongEnoughText.SetActive(true);
         yield return new WaitForSeconds(4f);
         notStrongEnoughText.SetActive(false);
+    }
+
+    //teleporter stuff
+    private IEnumerator Teleport()
+    {
+        yield return new WaitForSeconds(0f);
+        teleportScreen.SetActive(true);
+        transform.position = teleportPoint.transform.position;
+        _characterController.enabled = false;
+        yield return new WaitForSeconds(2f);
+        teleportScreen.SetActive(false);
+        _characterController.enabled = true;
+        tutorialLevel.SetActive(false);
+    }
+
+    public IEnumerator StartText()
+    {
+        yield return new WaitForSeconds(0f);
+        moveText.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        moveText.SetActive(false);
+        aimText.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        aimText.SetActive(false);
+        jumpText.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        jumpText.SetActive(false);
+        dashText.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        dashText.SetActive(false);
+        pauseText.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        pauseText.SetActive(false);
     }
 }

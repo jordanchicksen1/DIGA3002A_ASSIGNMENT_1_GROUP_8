@@ -48,6 +48,11 @@ TagManager:
   - Room14
   - Room15
   - Room16
+  - Tutorial1
+  - Tutorial2
+  - Tutorial3
+  - Note
+  - Teleporter
   layers:
   - Default
   - TransparentFX
