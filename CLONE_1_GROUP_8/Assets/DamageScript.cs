@@ -23,7 +23,8 @@ public class DamageScript : MonoBehaviour
         {
             healthManager targethealthManager = hit[0].GetComponent<healthManager>();
 
-            targethealthManager.TakeDamage(damage);
+            // targethealthManager.TakeDamage(damage);
+            targethealthManager.PlayerHit();
 
             gameObject.SetActive(false);
         }

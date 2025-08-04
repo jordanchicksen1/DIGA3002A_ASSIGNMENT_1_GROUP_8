@@ -49,23 +49,25 @@ public class healthManager : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
+    //eish wait, i alreay have this stuff
 
-        if(currentHealth <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+    //public void TakeDamage(int damage)
+    //{
+    //   currentHealth -= damage;
 
-        StartCoroutine(HitEffect());
-        IEnumerator HitEffect()
-        {
-            meshRenderer.material.color = Color.white * 2f;
-            yield return new WaitForSeconds(blinkDuration);
-            meshRenderer.material.color = defaultColor;
-        }
-    }
+    //    if(currentHealth <= 0)
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+
+    //    StartCoroutine(HitEffect());
+    //    IEnumerator HitEffect()
+    //    {
+    //        meshRenderer.material.color = Color.white * 2f;
+    //        yield return new WaitForSeconds(blinkDuration);
+    //        meshRenderer.material.color = defaultColor;
+    //    }
+    //}
     public void updateHealth(float amount)
     {
         currentHealth += amount;
@@ -102,7 +104,7 @@ public class healthManager : MonoBehaviour
     [ContextMenu("PlayerHeal")]
     public void PlayerHeal()
     {
-        currentHealth = currentHealth + 50f;
+        currentHealth = currentHealth + 25f;
         updateHealthBar();
         
 

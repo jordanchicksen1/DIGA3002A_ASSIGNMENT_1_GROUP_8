@@ -181,6 +181,8 @@ public class player : MonoBehaviour
     public spellCounter spellCounter;
     public GameObject notStrongEnoughText;
 
+    //killbox stuff
+    public GameObject killboxRespawnPoint;
     private void OnEnable()
     {
 
@@ -526,14 +528,14 @@ public class player : MonoBehaviour
 
     public void DrinkPotion()
     {
-        if (healthPotionEquipped == true && potionManager.healthPotion > 0 && healthManager.currentHealth < 100)
+        if (healthPotionEquipped == true && potionManager.healthPotion > 0 && healthManager.currentHealth < healthManager.maxHealth)
         {
             healthManager.PlayerHeal();
             potionManager.subtractHealthPotion();
             Debug.Log("player should heal and lose 1 potion");
         }
 
-        if (manaPotionEquipped == true && potionManager.manaPotion > 0 && manaManager.currentMana < 100)
+        if (manaPotionEquipped == true && potionManager.manaPotion > 0 && manaManager.currentMana < manaManager.maxMana)
         {
             manaManager.DrankManaPotion();
             potionManager.subtractManaPotion();
@@ -851,6 +853,14 @@ public class player : MonoBehaviour
         if(other.tag == "Teleporter" && hasPotionBag == true && hasStaff == true)
         {
             StartCoroutine(Teleport());
+        }
+
+
+        if (other.tag == "KillBox")
+        {
+            healthManager.PlayerHit();
+            StartCoroutine(KillBox());
+
         }
     }
     public void OnTriggerStay (Collider other)
@@ -1318,6 +1328,7 @@ public class player : MonoBehaviour
         {
             healthManager.FireWallHit();
         }
+
     }
 
     public void OnTriggerExit(Collider other)
@@ -1730,5 +1741,15 @@ public class player : MonoBehaviour
         pauseText.SetActive(true);
         yield return new WaitForSeconds(3f);
         pauseText.SetActive(false);
+    }
+
+    public IEnumerator KillBox()
+    {
+        yield return new WaitForSeconds(0f);
+        _characterController.enabled = false;
+        transform.position = killboxRespawnPoint.transform.position;
+        playerCamHolder.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        _characterController.enabled=true;
     }
 }
