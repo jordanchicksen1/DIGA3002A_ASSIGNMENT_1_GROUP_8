@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class bossHealth : MonoBehaviour
 {
@@ -11,11 +12,14 @@ public class bossHealth : MonoBehaviour
     public Image bossHealthBar;
     public GameObject bossWhole;
 
+    public GameObject gameFinishedScreen;
+
     public bossShooter bossShooter;
     public bossLookAt bossLookAt;
 
     public bool statsHaveDoubled = false;
-
+    public player player;
+    
     public void Start()
     {
         currentHealth = maxHealth;
@@ -27,6 +31,8 @@ public class bossHealth : MonoBehaviour
         if (currentHealth <= 0f)
         {
             Destroy(bossWhole);
+            player.EndGame();
+            
         }
 
         if(currentHealth <= 500f && statsHaveDoubled == false)
@@ -86,4 +92,8 @@ public class bossHealth : MonoBehaviour
         bossLookAt.bossSpeed = bossLookAt.bossSpeed + 4f;
 
     }
+
+   
+
+    
 }

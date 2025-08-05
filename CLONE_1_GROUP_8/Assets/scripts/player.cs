@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
@@ -192,6 +191,10 @@ public class player : MonoBehaviour
     public enemyLookAt enemyLookAt;
     public ghostLookAt ghostLookAt;
     public bossLookAt bossLookAt;
+
+    //boss room 
+    public GameObject bossHealthBar;
+    public GameObject bossRoomDoor;
     private void OnEnable()
     {
 
@@ -903,6 +906,12 @@ public class player : MonoBehaviour
         if(other.tag == "UltimateKillBox")
         {
             healthManager.FullKill();
+        }
+
+        if(other.tag == "BossRoom")
+        {
+            bossHealthBar.SetActive(true);
+            bossRoomDoor.SetActive(true);
         }
     }
     public void OnTriggerStay(Collider other)
@@ -1878,5 +1887,17 @@ public class player : MonoBehaviour
         playerCamHolder.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         _characterController.enabled = true;
+    }
+
+    [ContextMenu("End game")]
+    public void EndGame()
+    {
+        StartCoroutine(EndTheDamnGame());
+    }
+
+    public IEnumerator EndTheDamnGame()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("End");
     }
 }

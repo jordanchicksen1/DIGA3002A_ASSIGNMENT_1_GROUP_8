@@ -38,7 +38,8 @@ public class pauseButtons : MonoBehaviour
     public GameObject room14Cam;
     public GameObject room15Cam;
     public GameObject room16Cam;
-   
+    public GameObject bossHealthBar;
+    public GameObject bossRoomDoor;
 
 
 
@@ -142,5 +143,7 @@ public class pauseButtons : MonoBehaviour
         room14Cam.SetActive(false);
         room15Cam.SetActive(false);
         room16Cam.SetActive(false);
+        bossRoomDoor.SetActive(false);
+        bossHealthBar.SetActive(false);
     }
 }

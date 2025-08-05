@@ -66,6 +66,7 @@ TagManager:
   - PointB
   - PointC
   - PointD
+  - BossRoom
   layers:
   - Default
   - TransparentFX
