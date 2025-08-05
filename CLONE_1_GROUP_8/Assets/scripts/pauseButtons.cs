@@ -21,6 +21,28 @@ public class pauseButtons : MonoBehaviour
     public healthManager healthManager;
     public manaManager manaManager;
 
+    //respawn camera stuff
+    public GameObject room1Cam;
+    public GameObject room2Cam;
+    public GameObject room3Cam;
+    public GameObject room4Cam;
+    public GameObject room5Cam;
+    public GameObject room6Cam;
+    public GameObject room7Cam;
+    public GameObject room8Cam;
+    public GameObject room9Cam;
+    public GameObject room10Cam;
+    public GameObject room11Cam;
+    public GameObject room12Cam;
+    public GameObject room13Cam;
+    public GameObject room14Cam;
+    public GameObject room15Cam;
+    public GameObject room16Cam;
+   
+
+
+
+
     //tutorial letter
     public GameObject tutorialNote;
     public void ExitButton()
@@ -104,5 +126,21 @@ public class pauseButtons : MonoBehaviour
         gameoverScreen.SetActive(false);
         playerCharacterController.enabled=true;
         playerCamHolder.SetActive(true);
+        room1Cam.SetActive(false);
+        room2Cam.SetActive(false);
+        room3Cam.SetActive(false);
+        room4Cam.SetActive(false);
+        room5Cam.SetActive(false);
+        room6Cam.SetActive(false);
+        room7Cam.SetActive(false);
+        room8Cam.SetActive(false);
+        room9Cam.SetActive(false);
+        room10Cam.SetActive(false);
+        room11Cam.SetActive(false);
+        room12Cam.SetActive(false);
+        room13Cam.SetActive(false);    
+        room14Cam.SetActive(false);
+        room15Cam.SetActive(false);
+        room16Cam.SetActive(false);
     }
 }
