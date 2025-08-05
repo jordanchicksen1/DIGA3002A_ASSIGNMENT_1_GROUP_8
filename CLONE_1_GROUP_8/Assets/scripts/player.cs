@@ -195,6 +195,16 @@ public class player : MonoBehaviour
     //boss room 
     public GameObject bossHealthBar;
     public GameObject bossRoomDoor;
+
+    //particles
+    public ParticleSystem checkpointParticle1;
+    public ParticleSystem checkpointParticle2;
+    public ParticleSystem checkpointParticle3;
+    public ParticleSystem checkpointParticle4;
+
+    public ParticleSystem gotCollectibleParticle;
+    public ParticleSystem playerHitParticle;
+    public ParticleSystem tornadoParticle;
     private void OnEnable()
     {
 
@@ -365,6 +375,7 @@ public class player : MonoBehaviour
                 checkpointFive = false;
                 healthManager.FullHeal();
                 manaManager.FullMana();
+                checkpointParticle1.Play();
             }
 
             if (hit.collider.CompareTag("Checkpoint2"))
@@ -378,6 +389,7 @@ public class player : MonoBehaviour
                 checkpointFive = false;
                 healthManager.FullHeal();
                 manaManager.FullMana();
+                checkpointParticle2.Play();
             }
 
             if (hit.collider.CompareTag("Checkpoint3"))
@@ -391,6 +403,7 @@ public class player : MonoBehaviour
                 checkpointFive = false;
                 healthManager.FullHeal();
                 manaManager.FullMana();
+                checkpointParticle3.Play();
             }
 
             if (hit.collider.CompareTag("Checkpoint4"))
@@ -404,6 +417,7 @@ public class player : MonoBehaviour
                 checkpointFive = false;
                 healthManager.FullHeal();
                 manaManager.FullMana();
+                checkpointParticle4.Play();
             }
 
             if (hit.collider.CompareTag("Checkpoint5"))
@@ -535,6 +549,7 @@ public class player : MonoBehaviour
             manaManager.UseWindSpell();
             isJumping = true;
             StartCoroutine(CapJump());
+            tornadoParticle.Play();
         }
     }
 
@@ -714,6 +729,7 @@ public class player : MonoBehaviour
             StartCoroutine(FireSpellPopUp());
             fireEmblem.SetActive(true);
             spellCounter.AddSpell();
+            gotCollectibleParticle.Play();
         }
 
         if (other.tag == "WaterSpell")
@@ -743,6 +759,7 @@ public class player : MonoBehaviour
             StartCoroutine(WaterSpellPopUp());
             waterEmblem.SetActive(true);
             spellCounter.AddSpell();
+            gotCollectibleParticle.Play();
         }
 
         if(other.tag == "WindSpell")
@@ -772,6 +789,7 @@ public class player : MonoBehaviour
             StartCoroutine(WindSpellPopUp());
             windEmblem.SetActive(true);
             spellCounter.AddSpell();
+            gotCollectibleParticle.Play();
         }
 
         if(other.tag == "RockSpell")
@@ -801,6 +819,7 @@ public class player : MonoBehaviour
             StartCoroutine(RockSpellPopUp());
             rockEmblem.SetActive(true); 
             spellCounter.AddSpell();
+            gotCollectibleParticle.Play();
         }
 
         if (other.tag == "Key")
@@ -816,6 +835,7 @@ public class player : MonoBehaviour
             kingCoin.AddKingCoin();
             kingCoin.CheckCoinCount();
             StartCoroutine(KingCoinAcquired());
+            gotCollectibleParticle.Play();
         }
 
         if(other.tag == "QueenCrystal")
@@ -824,6 +844,7 @@ public class player : MonoBehaviour
             queenCrystal.AddQueenCrystal();
             queenCrystal.CheckCrystalCount();
             StartCoroutine(QueenCrystalAcquired());
+            gotCollectibleParticle.Play();
         }
 
         if(other.tag == "WaterObstacle" && isUsingWaterShield == false)
@@ -843,6 +864,7 @@ public class player : MonoBehaviour
             staff.SetActive(true);
             StartCoroutine(StaffAcquired());    
             hasStaff = true;
+            gotCollectibleParticle.Play();
         }
 
         if(other.tag == "PotionBag")
@@ -852,6 +874,7 @@ public class player : MonoBehaviour
             potionBag.SetActive(true);
             StartCoroutine(PotionBagAcquired());
             hasPotionBag = true;
+            gotCollectibleParticle.Play();
         }
 
         if(other.tag == "Note")
@@ -873,6 +896,7 @@ public class player : MonoBehaviour
         {
             healthManager.PlayerHit();
             StartCoroutine(KillBox());
+            playerHitParticle.Play();
 
         }
 
@@ -880,27 +904,28 @@ public class player : MonoBehaviour
         {
             healthManager.PlayerHit();
             StartCoroutine(KillBox2());
-
+            playerHitParticle.Play();
         }
 
         if (other.tag == "KillBox3")
         {
             healthManager.PlayerHit();
             StartCoroutine(KillBox3());
-
+            playerHitParticle.Play();
         }
 
         if (other.tag == "KillBox4")
         {
             healthManager.PlayerHit();
             StartCoroutine(KillBox4());
-
+            playerHitParticle.Play();
         }
 
         if(other.tag == "EnemyBullet")
         {
             healthManager.PlayerHit();
             Destroy(other.gameObject);
+            playerHitParticle.Play();
         }
 
         if(other.tag == "UltimateKillBox")
@@ -1378,11 +1403,13 @@ public class player : MonoBehaviour
         if (other.tag == "WaterObstacle")
         {
             healthManager.FireWallHit();
+            playerHitParticle.Play();
         }
 
         if (other.tag == "GhostDamage")
         {
             healthManager.FireWallHit();
+            playerHitParticle.Play();
         }
 
         if (other.CompareTag("ShootingEnemyRange"))

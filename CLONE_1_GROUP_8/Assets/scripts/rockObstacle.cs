@@ -8,7 +8,7 @@ public class rockObstacle : MonoBehaviour
     {
         if(other.tag == "RockProjectile")
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 0.5f);
             Destroy(other.gameObject);
         }
 
