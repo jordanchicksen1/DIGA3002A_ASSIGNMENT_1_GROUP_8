@@ -176,6 +176,7 @@ public class player : MonoBehaviour
     //potionBagStuff
     public GameObject potionFrame;
     public GameObject potionText;
+    public GameObject potionBag;
 
     //boss door
     public spellCounter spellCounter;
@@ -189,6 +190,7 @@ public class player : MonoBehaviour
 
     //shooting enemy stuff
     public enemyLookAt enemyLookAt;
+    public ghostLookAt ghostLookAt;
     private void OnEnable()
     {
 
@@ -843,6 +845,7 @@ public class player : MonoBehaviour
         {
             Destroy(other.gameObject);
             potionFrame.SetActive(true);
+            potionBag.SetActive(true);
             StartCoroutine(PotionBagAcquired());
             hasPotionBag = true;
         }
@@ -894,6 +897,11 @@ public class player : MonoBehaviour
         {
             healthManager.PlayerHit();
             Destroy(other.gameObject);
+        }
+
+        if(other.tag == "UltimateKillBox")
+        {
+            healthManager.FullKill();
         }
     }
     public void OnTriggerStay(Collider other)
@@ -1362,6 +1370,11 @@ public class player : MonoBehaviour
             healthManager.FireWallHit();
         }
 
+        if (other.tag == "GhostDamage")
+        {
+            healthManager.FireWallHit();
+        }
+
         if (other.CompareTag("ShootingEnemyRange"))
         {
             enemyLookAt enemy = other.GetComponentInParent<enemyLookAt>(); 
@@ -1369,6 +1382,19 @@ public class player : MonoBehaviour
             if (enemy != null)
             {
                 enemy.isInShootingRange = true;
+                
+            }
+
+        }
+
+        if (other.CompareTag("GhostTrigger"))
+        {
+            ghostLookAt ghost = other.GetComponentInParent<ghostLookAt>();
+
+            if (ghost != null)
+            {
+                ghost.isInGhostRange = true;
+                Debug.Log("is in ghost range");
             }
 
         }
@@ -1407,6 +1433,17 @@ public class player : MonoBehaviour
             if (enemy != null)
             {
                 enemy.isInShootingRange = false;
+            }
+
+        }
+
+        if (other.CompareTag("GhostTrigger"))
+        {
+            ghostLookAt ghost = other.GetComponentInParent<ghostLookAt>();
+
+            if (ghost != null)
+            {
+                ghost.isInGhostRange = false;
             }
 
         }
