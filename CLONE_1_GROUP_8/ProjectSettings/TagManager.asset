@@ -61,6 +61,11 @@ TagManager:
   - GhostTrigger
   - GhostDamage
   - UltimateKillBox
+  - BossTrigger
+  - PointA
+  - PointB
+  - PointC
+  - PointD
   layers:
   - Default
   - TransparentFX

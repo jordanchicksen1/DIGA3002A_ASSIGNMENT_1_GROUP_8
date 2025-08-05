@@ -22,12 +22,14 @@ public class enemyLookAt : MonoBehaviour
         {
             shooterHealth.HitByFire();
             Destroy(other.gameObject);
+            Debug.Log("hit by fireball");
         }
 
         if(other.tag == "RockProjectile")
         {
             shooterHealth.HitByRock();
             Destroy(other.gameObject);
+            Debug.Log("Hit by rock");
         }
     }
 }

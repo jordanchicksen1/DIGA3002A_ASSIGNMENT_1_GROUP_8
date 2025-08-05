@@ -191,6 +191,7 @@ public class player : MonoBehaviour
     //shooting enemy stuff
     public enemyLookAt enemyLookAt;
     public ghostLookAt ghostLookAt;
+    public bossLookAt bossLookAt;
     private void OnEnable()
     {
 
@@ -1397,6 +1398,11 @@ public class player : MonoBehaviour
                 Debug.Log("is in ghost range");
             }
 
+        }
+
+        if(other.tag == "BossTrigger")
+        {
+            bossLookAt.isInBossRange = true;
         }
     }
 
