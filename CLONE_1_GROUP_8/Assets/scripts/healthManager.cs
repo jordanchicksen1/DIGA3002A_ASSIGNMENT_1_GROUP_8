@@ -35,8 +35,8 @@ public class healthManager : MonoBehaviour
         currentHealth = maxHealth;
         updateHealthBar();
 
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
-        defaultColor = meshRenderer.material.color;
+        //meshRenderer = GetComponentInChildren<MeshRenderer>();
+        //defaultColor = meshRenderer.material.color;
     }
 
     public void Update()
@@ -114,6 +114,12 @@ public class healthManager : MonoBehaviour
     public void FullHeal()
     {
         currentHealth = maxHealth;
+        updateHealthBar();
+    }
+
+    public void FullKill()
+    {
+        currentHealth = currentHealth - 500f;
         updateHealthBar();
     }
 

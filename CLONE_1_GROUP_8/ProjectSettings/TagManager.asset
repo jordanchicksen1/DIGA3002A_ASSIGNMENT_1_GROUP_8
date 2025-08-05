@@ -58,6 +58,9 @@ TagManager:
   - KillBox4
   - EnemyBullet
   - ShootingEnemyRange
+  - GhostTrigger
+  - GhostDamage
+  - UltimateKillBox
   layers:
   - Default
   - TransparentFX
