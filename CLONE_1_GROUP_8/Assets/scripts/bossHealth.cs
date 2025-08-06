@@ -19,7 +19,10 @@ public class bossHealth : MonoBehaviour
 
     public bool statsHaveDoubled = false;
     public player player;
-    
+
+    public ParticleSystem doubleStatsFX;
+    public ParticleSystem hitFX;
+
     public void Start()
     {
         currentHealth = maxHealth;
@@ -59,6 +62,7 @@ public class bossHealth : MonoBehaviour
     public void HitByFire()
     {
         currentHealth = currentHealth - 15f;
+        hitFX.Play();
         StartCoroutine(BossStopper());
         updateBossHealthBar();
     }
@@ -66,6 +70,7 @@ public class bossHealth : MonoBehaviour
     public void HitByRock()
     {
         currentHealth = currentHealth - 20f;
+        hitFX.Play();
         StartCoroutine(BossStopper());
         updateBossHealthBar();
 
@@ -82,6 +87,14 @@ public class bossHealth : MonoBehaviour
         statsHaveDoubled = true;
         bossLookAt.DoubleStats();
         bossShooter.DoubleStats();
+        doubleStatsFX.Play();
+    }
+
+    public void RevertAllStats()
+    {
+        statsHaveDoubled = false;
+        bossLookAt.RevertStats();
+        bossShooter.RevertStats();
     }
 
     public IEnumerator BossStopper()

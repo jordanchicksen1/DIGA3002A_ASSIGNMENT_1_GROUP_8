@@ -10,6 +10,14 @@ public class bossShooter : MonoBehaviour
     public float shootRecoveryTime;
     public float bulletSpeed;
     public bossLookAt bossLookAt;
+    public float originalShootRecoveryTime;
+    public float originalBulletSpeed;
+
+    public void Start()
+    {
+        originalBulletSpeed = bulletSpeed;
+        originalShootRecoveryTime = shootRecoveryTime;
+    }
 
     public void Update()
     {
@@ -31,5 +39,12 @@ public class bossShooter : MonoBehaviour
     {
         shootRecoveryTime = shootRecoveryTime - 1;
         bulletSpeed = bulletSpeed * 1.2f;
+    }
+
+    public void RevertStats()
+    {
+        bulletSpeed = originalBulletSpeed;
+        shootRecoveryTime = originalShootRecoveryTime;  
+
     }
 }

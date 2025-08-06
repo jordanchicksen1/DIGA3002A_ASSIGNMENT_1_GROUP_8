@@ -20,6 +20,7 @@ public class pauseButtons : MonoBehaviour
     //respawn
     public healthManager healthManager;
     public manaManager manaManager;
+    public bossHealth bosshealth;
 
     //respawn camera stuff
     public GameObject room1Cam;
@@ -41,6 +42,9 @@ public class pauseButtons : MonoBehaviour
     public GameObject bossHealthBar;
     public GameObject bossRoomDoor;
 
+    //audio
+    public GameObject dungeonSong;
+    public GameObject bossSong;
 
 
 
@@ -145,5 +149,9 @@ public class pauseButtons : MonoBehaviour
         room16Cam.SetActive(false);
         bossRoomDoor.SetActive(false);
         bossHealthBar.SetActive(false);
+        bosshealth.FullHealBoss();
+        bossSong.SetActive(false);
+        dungeonSong.SetActive(true);
+        bosshealth.RevertAllStats();
     }
 }

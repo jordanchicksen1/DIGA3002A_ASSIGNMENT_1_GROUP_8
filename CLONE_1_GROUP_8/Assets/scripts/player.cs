@@ -205,6 +205,11 @@ public class player : MonoBehaviour
     public ParticleSystem gotCollectibleParticle;
     public ParticleSystem playerHitParticle;
     public ParticleSystem tornadoParticle;
+
+    public GameObject startDoor;
+
+    public GameObject dungeonSong;
+    public GameObject bossSong;
     private void OnEnable()
     {
 
@@ -937,6 +942,8 @@ public class player : MonoBehaviour
         {
             bossHealthBar.SetActive(true);
             bossRoomDoor.SetActive(true);
+            dungeonSong.SetActive(false);
+            bossSong.SetActive(true);
         }
     }
     public void OnTriggerStay(Collider other)
@@ -1874,6 +1881,7 @@ public class player : MonoBehaviour
         pauseText.SetActive(true);
         yield return new WaitForSeconds(3f);
         pauseText.SetActive(false);
+        startDoor.SetActive(false);
     }
 
     public IEnumerator KillBox()

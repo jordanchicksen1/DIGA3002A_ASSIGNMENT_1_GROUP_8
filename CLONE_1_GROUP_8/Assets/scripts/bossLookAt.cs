@@ -19,6 +19,12 @@ public class bossLookAt : MonoBehaviour
     public Transform pC;
     public Transform pD;
     public float bossSpeed;
+    public float originalBossSpeed;
+
+    public void Start()
+    {
+        originalBossSpeed = bossSpeed;
+    }
     void Update()
     {
         if (isInBossRange == true && pointA == false && pointB == false && pointC == false && pointD == false)
@@ -113,5 +119,10 @@ public class bossLookAt : MonoBehaviour
     public void DoubleStats()
     {
         bossSpeed = bossSpeed * 1.2f;
+    }
+
+    public void RevertStats()
+    {
+        bossSpeed = originalBossSpeed;
     }
 }
