@@ -210,6 +210,9 @@ public class player : MonoBehaviour
 
     public GameObject dungeonSong;
     public GameObject bossSong;
+
+    
+
     private void OnEnable()
     {
 
@@ -1819,7 +1822,7 @@ public class player : MonoBehaviour
         yield return new WaitForSeconds(0f);
         potionText.SetActive(false);
         staffText.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         staffText.SetActive(false);
     }
 
@@ -1829,7 +1832,7 @@ public class player : MonoBehaviour
         yield return new WaitForSeconds(0f);
         staffText.SetActive(false);
         potionText.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         potionText.SetActive(false);
     }
 

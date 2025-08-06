@@ -23,6 +23,16 @@ public class healthManager : MonoBehaviour
     public GameObject healthBarLevelFive;
     public GameObject gameOverScreen;
 
+    //player sounds
+    public AudioSource playerSFX;
+    public AudioClip playerHitSFX;
+    public AudioClip playerHealSFX;
+
+    //dying fix
+    public GameObject player;
+    public CharacterController playerCharacterController;
+    public GameObject playerWaitingPoint;
+
     //[SerializeField] private int health;
 
     [Header("Hit Effect")]
@@ -44,6 +54,7 @@ public class healthManager : MonoBehaviour
         if (currentHealth <= 0)
         {
             gameOverScreen.SetActive(true);
+            StartCoroutine(PlayerDied());
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -91,6 +102,8 @@ public class healthManager : MonoBehaviour
     {
         currentHealth = currentHealth - 10f;
         updateHealthBar();
+        playerSFX.clip = playerHitSFX;
+        playerSFX.Play();
        
 
     }
@@ -99,6 +112,8 @@ public class healthManager : MonoBehaviour
     {
         currentHealth = currentHealth - 0.5f;
         updateHealthBar();
+        playerSFX.clip = playerHitSFX;
+        playerSFX.Play();
     }
 
     [ContextMenu("PlayerHeal")]
@@ -106,7 +121,9 @@ public class healthManager : MonoBehaviour
     {
         currentHealth = currentHealth + 50f;
         updateHealthBar();
-        
+        playerSFX.clip = playerHealSFX;
+        playerSFX.Play();
+
 
     }
 
@@ -115,12 +132,16 @@ public class healthManager : MonoBehaviour
     {
         currentHealth = maxHealth;
         updateHealthBar();
+        playerSFX.clip = playerHealSFX;
+        playerSFX.Play();
     }
 
     public void FullKill()
     {
         currentHealth = currentHealth - 500f;
         updateHealthBar();
+        playerSFX.clip = playerHitSFX;
+        playerSFX.Play();
     }
 
     public void GotUpgradeOne()
@@ -166,6 +187,15 @@ public class healthManager : MonoBehaviour
         healthBarLevelFour.SetActive(false);
         healthBarLevelFive.SetActive(true);
         updateHealthBar();
+    }
+
+    public IEnumerator PlayerDied()
+    {
+        yield return new WaitForSeconds(0f);
+        playerCharacterController.enabled = false;
+        player.transform.position = playerWaitingPoint.transform.position;
+        yield return new WaitForSeconds(0.5f);
+        playerCharacterController.enabled = true;
     }
 
 }
