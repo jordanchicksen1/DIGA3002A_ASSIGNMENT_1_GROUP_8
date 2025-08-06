@@ -411,6 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1617375750}
   - component: {fileID: 1617375749}
+  - component: {fileID: 1617375751}
   m_Layer: 0
   m_Name: victory
   m_TagString: Untagged
@@ -529,6 +530,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1617375751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617375748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e8e7994baecb34e840ca94642672b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1801753590
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,6 +952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbde6fee42305154f860b3c7f462c87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  videoPlayer: {fileID: 0}
 --- !u!1 &2082154611
 GameObject:
   m_ObjectHideFlags: 0

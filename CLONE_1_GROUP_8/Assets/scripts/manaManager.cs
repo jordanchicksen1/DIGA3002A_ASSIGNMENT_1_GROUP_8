@@ -20,8 +20,8 @@ public class manaManager : MonoBehaviour
     public GameObject manaBarLevelFour;
     public Image manaBarUpgradeFive;
     public GameObject manaBarLevelFive;
-  
 
+    public AudioSource playersounds2;
 
 
 
@@ -91,7 +91,7 @@ public class manaManager : MonoBehaviour
     {
         currentMana = currentMana + 50f;
         updateManaBar();
-
+        playersounds2.Play();
     }
 
     [ContextMenu("FullMana")]
@@ -100,6 +100,7 @@ public class manaManager : MonoBehaviour
     {
         currentMana = maxMana;
         updateManaBar();
+        playersounds2.Play();
     }
 
     public void GotUpgradeOne()

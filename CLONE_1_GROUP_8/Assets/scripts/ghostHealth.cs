@@ -8,6 +8,8 @@ public class ghostHealth : MonoBehaviour
     public float currentHealth;
     public GameObject ghostWhole;
 
+    public AudioSource enemySounds;
+
     public void Start()
     {
         currentHealth = maxHealth;
@@ -24,6 +26,7 @@ public class ghostHealth : MonoBehaviour
     public void HitByFire()
     {
         currentHealth = currentHealth - 40f;
+        enemySounds.Play();
     }
 
    

@@ -23,6 +23,7 @@ public class bossHealth : MonoBehaviour
     public ParticleSystem doubleStatsFX;
     public ParticleSystem hitFX;
 
+    public AudioSource enemySounds;
     public void Start()
     {
         currentHealth = maxHealth;
@@ -65,6 +66,7 @@ public class bossHealth : MonoBehaviour
         hitFX.Play();
         StartCoroutine(BossStopper());
         updateBossHealthBar();
+        enemySounds.Play();
     }
 
     public void HitByRock()
@@ -73,6 +75,7 @@ public class bossHealth : MonoBehaviour
         hitFX.Play();
         StartCoroutine(BossStopper());
         updateBossHealthBar();
+        enemySounds.Play();
 
     }
 

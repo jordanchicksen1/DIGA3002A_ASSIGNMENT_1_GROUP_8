@@ -153,5 +153,6 @@ public class pauseButtons : MonoBehaviour
         bossSong.SetActive(false);
         dungeonSong.SetActive(true);
         bosshealth.RevertAllStats();
+        player.isPaused = false;
     }
 }

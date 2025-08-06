@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 using UnityEngine.UI;
 
 
@@ -33,6 +34,8 @@ public class healthManager : MonoBehaviour
     public CharacterController playerCharacterController;
     public GameObject playerWaitingPoint;
 
+    public player playerScript;
+
     //[SerializeField] private int health;
 
     [Header("Hit Effect")]
@@ -54,7 +57,7 @@ public class healthManager : MonoBehaviour
         if (currentHealth <= 0)
         {
             gameOverScreen.SetActive(true);
-           // StartCoroutine(PlayerDied());
+            playerScript.isPaused = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }

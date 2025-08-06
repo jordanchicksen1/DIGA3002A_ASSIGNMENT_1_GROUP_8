@@ -211,6 +211,10 @@ public class player : MonoBehaviour
     public GameObject dungeonSong;
     public GameObject bossSong;
 
+    public AudioSource worldSounds;
+    public AudioClip shootingSpellSFX;
+
+    public AudioSource worldSounds2;
     
 
     private void OnEnable()
@@ -514,6 +518,7 @@ public class player : MonoBehaviour
 
     public void CastSpell()
     {
+        
         //fire spell
         if(manaManager.currentMana > 4.99f && fireSpellEquipped == true)
         {
@@ -522,6 +527,8 @@ public class player : MonoBehaviour
             rb.velocity = spellSpawnPoint.forward * fireProjectileSpeed;
             manaManager.UseFireSpell();
             Destroy(projectile, 1f);
+            worldSounds.clip = shootingSpellSFX;
+            worldSounds.Play();
         }
 
         //water spell
@@ -530,7 +537,9 @@ public class player : MonoBehaviour
             StartCoroutine(WaterShield());
             manaManager.UseWaterSpell();
             isUsingWaterShield = true;
-            
+            worldSounds.clip = shootingSpellSFX;
+            worldSounds.Play();
+
         }
 
         //rock spell
@@ -548,6 +557,8 @@ public class player : MonoBehaviour
             var rb3 = projectile3.GetComponent<Rigidbody>();
             rb3.velocity = spellSpawnPoint3.forward * rockProjectileSpeed;
             manaManager.UseRockSpell();
+            worldSounds.clip = shootingSpellSFX;
+            worldSounds.Play();
         }
 
         //wind spell
@@ -558,6 +569,8 @@ public class player : MonoBehaviour
             isJumping = true;
             StartCoroutine(CapJump());
             tornadoParticle.Play();
+            worldSounds.clip = shootingSpellSFX;
+            worldSounds.Play();
         }
     }
 
@@ -738,6 +751,7 @@ public class player : MonoBehaviour
             fireEmblem.SetActive(true);
             spellCounter.AddSpell();
             gotCollectibleParticle.Play();
+            worldSounds2.Play();
         }
 
         if (other.tag == "WaterSpell")
@@ -768,6 +782,7 @@ public class player : MonoBehaviour
             waterEmblem.SetActive(true);
             spellCounter.AddSpell();
             gotCollectibleParticle.Play();
+            worldSounds2.Play();
         }
 
         if(other.tag == "WindSpell")
@@ -798,6 +813,7 @@ public class player : MonoBehaviour
             windEmblem.SetActive(true);
             spellCounter.AddSpell();
             gotCollectibleParticle.Play();
+            worldSounds2.Play();
         }
 
         if(other.tag == "RockSpell")
@@ -828,6 +844,7 @@ public class player : MonoBehaviour
             rockEmblem.SetActive(true); 
             spellCounter.AddSpell();
             gotCollectibleParticle.Play();
+            worldSounds2.Play();
         }
 
         if (other.tag == "Key")
@@ -844,6 +861,7 @@ public class player : MonoBehaviour
             kingCoin.CheckCoinCount();
             StartCoroutine(KingCoinAcquired());
             gotCollectibleParticle.Play();
+            worldSounds2.Play();
         }
 
         if(other.tag == "QueenCrystal")
@@ -853,6 +871,7 @@ public class player : MonoBehaviour
             queenCrystal.CheckCrystalCount();
             StartCoroutine(QueenCrystalAcquired());
             gotCollectibleParticle.Play();
+            worldSounds2.Play();
         }
 
         if(other.tag == "WaterObstacle" && isUsingWaterShield == false)
@@ -873,6 +892,7 @@ public class player : MonoBehaviour
             StartCoroutine(StaffAcquired());    
             hasStaff = true;
             gotCollectibleParticle.Play();
+            worldSounds2.Play();
         }
 
         if(other.tag == "PotionBag")
@@ -883,6 +903,7 @@ public class player : MonoBehaviour
             StartCoroutine(PotionBagAcquired());
             hasPotionBag = true;
             gotCollectibleParticle.Play();
+            worldSounds2.Play();
         }
 
         if(other.tag == "Note")
