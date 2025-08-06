@@ -1863,7 +1863,7 @@ public class player : MonoBehaviour
         yield return new WaitForSeconds(2f);
         teleportScreen.SetActive(false);
         _characterController.enabled = true;
-        tutorialLevel.SetActive(false);
+      //  tutorialLevel.SetActive(false);
     }
 
     public IEnumerator StartText()

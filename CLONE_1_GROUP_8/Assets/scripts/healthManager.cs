@@ -54,7 +54,7 @@ public class healthManager : MonoBehaviour
         if (currentHealth <= 0)
         {
             gameOverScreen.SetActive(true);
-            StartCoroutine(PlayerDied());
+           // StartCoroutine(PlayerDied());
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
