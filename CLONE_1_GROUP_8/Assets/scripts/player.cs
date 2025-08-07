@@ -957,7 +957,14 @@ public class player : MonoBehaviour
             playerHitParticle.Play();
         }
 
-        if(other.tag == "UltimateKillBox")
+        if (other.tag == "BossBullet")
+        {
+            healthManager.PlayerHitALot();
+            Destroy(other.gameObject);
+            playerHitParticle.Play();
+        }
+
+        if (other.tag == "UltimateKillBox")
         {
             healthManager.FullKill();
         }
@@ -1440,6 +1447,12 @@ public class player : MonoBehaviour
         if (other.tag == "GhostDamage")
         {
             healthManager.FireWallHit();
+            playerHitParticle.Play();
+        }
+
+        if (other.tag == "BossDamage")
+        {
+            healthManager.BossWallHit();
             playerHitParticle.Play();
         }
 

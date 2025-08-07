@@ -111,6 +111,22 @@ public class healthManager : MonoBehaviour
 
     }
 
+    public void PlayerHitALot()
+    {
+        currentHealth = currentHealth - 20f;
+        updateHealthBar();
+        playerSFX.clip = playerHitSFX;
+        playerSFX.Play();
+
+
+    }
+    public void BossWallHit()
+    {
+        currentHealth = currentHealth - 0.6f;
+        updateHealthBar();
+        playerSFX.clip = playerHitSFX;
+        playerSFX.Play();
+    }
     public void FireWallHit()
     {
         currentHealth = currentHealth - 0.5f;

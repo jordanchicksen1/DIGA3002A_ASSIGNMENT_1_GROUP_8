@@ -67,6 +67,8 @@ TagManager:
   - PointC
   - PointD
   - BossRoom
+  - BossBullet
+  - BossDamage
   layers:
   - Default
   - TransparentFX
